@@ -1,5 +1,6 @@
 BUILD_SUBDIRS = threads userprog vm filesys
 TAR_PATH := team${TEAM}.tar.gz
+TEAM=YOUR_TEAM_NUMBER make archive
 
 all::
 	@echo "Run 'make' in subdirectories: $(BUILD_SUBDIRS)."
@@ -38,3 +39,4 @@ else
 		mv /tmp/${TAR_PATH} . && \
 		echo "Successfully archived. Submit '${TAR_PATH}'."
 endif
+
