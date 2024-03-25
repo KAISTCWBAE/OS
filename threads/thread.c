@@ -27,6 +27,10 @@
 /* List of processes in THREAD_READY state, that is, processes
    that are ready to run but not actually running. */
 static struct list ready_list;
+/*================================================== IMPLEMENTATION START ==================================================*/
+/* List of processes in THREAD_BLOCKED state. */
+static struct list blocked_list;
+/*================================================== IMPLEMENTATION  END  ==================================================*/
 
 /* Idle thread. */
 static struct thread *idle_thread;
@@ -108,6 +112,9 @@ thread_init (void) {
 	/* Init the globla thread context */
 	lock_init (&tid_lock);
 	list_init (&ready_list);
+/*================================================== IMPLEMENTATION START ==================================================*/
+	list_init (&blocked_list);
+/*================================================== IMPLEMENTATION  END  ==================================================*/
 	list_init (&destruction_req);
 
 	/* Set up a thread structure for the running thread. */
@@ -218,9 +225,18 @@ thread_create (const char *name, int priority,
    primitives in synch.h. */
 void
 thread_block (void) {
+/*================================================== IMPLEMENTATION START ==================================================*/
+	struct thread *curr = thread_current ();
+/*================================================== IMPLEMENTATION  END  ==================================================*/
 	ASSERT (!intr_context ());
 	ASSERT (intr_get_level () == INTR_OFF);
-	thread_current ()->status = THREAD_BLOCKED;
+/*================================================== IMPLEMENTATION START ==================================================*/
+	if (curr != idle_thread)
+		list_push_back (&blocked_list, &curr->elem);
+	curr->status = THREAD_BLOCKED;
+
+	// thread_current ()->status = THREAD_BLOCKED;
+/*================================================== IMPLEMENTATION  END  ==================================================*/
 	schedule ();
 }
 
@@ -244,6 +260,34 @@ thread_unblock (struct thread *t) {
 	t->status = THREAD_READY;
 	intr_set_level (old_level);
 }
+
+/*================================================== IMPLEMENTATION START ==================================================*/
+void
+thread_sleep (int64_t ticks) {
+	struct thread *curr = thread_current ();
+	enum intr_level old_level = intr_disable ();
+
+	ASSERT (!intr_context ());
+
+	curr->alarm_ticks = ticks;
+	if (curr != idle_thread)
+		thread_block ();
+	intr_set_level (old_level);
+}
+
+void
+thread_awake (int64_t ticks) {
+	for (struct list_elem *e = list_begin(&blocked_list) ; e != list_tail(&blocked_list) ;) {
+		struct thread *t = list_entry (e, struct thread, elem);
+		if (t->alarm_ticks <= ticks) {
+			e = list_remove (e);
+			thread_unblock (t);
+    	}
+		else
+			e = list_next (e);
+	}
+}
+/*================================================== IMPLEMENTATION  END  ==================================================*/ 
 
 /* Returns the name of the running thread. */
 const char *

@@ -1,0 +1,19 @@
+Kernel command line: -q run alarm-priority
+0 ~ 9fc00 1
+100000 ~ 13e0000 1
+Pintos booting with: 
+	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
+	ext_mem: 0x100000 ~ 0x13e0000 (Usable: 19,328 kB)
+Calibrating timer...  157,081,600 loops/s.
+Boot complete.
+Executing 'alarm-priority':
+(alarm-priority) begin
+(alarm-priority) Thread priority 25 woke up.
+Kernel PANIC at ../../threads/thread.c:258 in thread_unblock(): assertion `t->status == THREAD_BLOCKED' failed.
+Call stack: 0x8004213370 0x8004206e03 0x8004209a70 0x80042175b1 0x8004207344.
+The `backtrace' program can make call stacks useful.
+Read "Backtraces" in the "Debugging Tools" chapter
+of the Pintos documentation for more information.
+Timer: 541 ticks
+Thread: 489 idle ticks, 52 kernel ticks, 0 user ticks
+Console: 
