@@ -1,9 +1,9 @@
 FAIL
-Kernel panic in run: PANIC at ../../threads/thread.c:258 in thread_unblock(): assertion `t->status == THREAD_BLOCKED' failed.
-Call stack: 0x8004213370 0x8004206e03 0x8004209a70 0x80042175b1 0x8004207344
+Kernel panic in run: PANIC at ../../threads/thread.c:260 in thread_unblock(): assertion `t->status == THREAD_BLOCKED' failed.
+Call stack: 0x8004213436 0x8004206e66 0x8004209b36 0x800421779d 0x800420740a
 Translation of call stack:
-0x0000008004213370: debug_panic (lib/kernel/debug.c:32)
-0x0000008004206e03: thread_unblock (threads/thread.c:259)
-0x0000008004209a70: sema_up (threads/synch.c:115)
-0x00000080042175b1: alarm_priority_thread (tests/threads/alarm-priority.c:58)
-0x0000008004207344: kernel_thread (threads/thread.c:438)
+0x0000008004213436: debug_panic (lib/kernel/debug.c:32)
+0x0000008004206e66: thread_unblock (threads/thread.c:262)
+0x0000008004209b36: sema_up (threads/synch.c:115)
+0x000000800421779d: alarm_priority_thread (tests/threads/alarm-priority.c:58)
+0x000000800420740a: kernel_thread (threads/thread.c:448)

@@ -213,6 +213,8 @@ thread_create (const char *name, int priority,
 
 	/* Add to run queue. */
 	thread_unblock (t);
+	if (!list_empty (&ready_list) && thread_current ()->priority < list_entry (list_front (&ready_list), struct thread, elem)->priority)
+        thread_yield ();
 
 	return tid;
 }
@@ -256,7 +258,10 @@ thread_unblock (struct thread *t) {
 
 	old_level = intr_disable ();
 	ASSERT (t->status == THREAD_BLOCKED);
-	list_push_back (&ready_list, &t->elem);
+/*================================================== IMPLEMENTATION START ==================================================*/
+	list_insert_priority_ordered (&ready_list, &t->elem);
+	// list_push_back (&ready_list, &t->elem);
+/*================================================== IMPLEMENTATION  END  ==================================================*/ 
 	t->status = THREAD_READY;
 	intr_set_level (old_level);
 }
@@ -277,7 +282,7 @@ thread_sleep (int64_t ticks) {
 
 void
 thread_awake (int64_t ticks) {
-	for (struct list_elem *e = list_begin(&blocked_list) ; e != list_tail(&blocked_list) ;) {
+	for (struct list_elem *e = list_begin (&blocked_list) ; e != list_tail (&blocked_list) ;) {
 		struct thread *t = list_entry (e, struct thread, elem);
 		if (t->alarm_ticks <= ticks) {
 			e = list_remove (e);
@@ -347,7 +352,10 @@ thread_yield (void) {
 
 	old_level = intr_disable ();
 	if (curr != idle_thread)
-		list_push_back (&ready_list, &curr->elem);
+/*================================================== IMPLEMENTATION START ==================================================*/
+		list_insert_priority_ordered (&ready_list, &curr->elem);
+		// list_push_back (&ready_list, &curr->elem);
+/*================================================== IMPLEMENTATION  END  ==================================================*/ 
 	do_schedule (THREAD_READY);
 	intr_set_level (old_level);
 }
@@ -356,6 +364,8 @@ thread_yield (void) {
 void
 thread_set_priority (int new_priority) {
 	thread_current ()->priority = new_priority;
+	if (!list_empty (&ready_list) && thread_current ()->priority < list_entry (list_front (&ready_list), struct thread, elem)->priority)
+        thread_yield ();
 }
 
 /* Returns the current thread's priority. */
