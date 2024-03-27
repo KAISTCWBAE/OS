@@ -435,17 +435,20 @@ list_insert_ordered (struct list *list, struct list_elem *elem,
 }
 
 /*================================================== IMPLEMENTATION START ==================================================*/
-void
-list_insert_priority_ordered (struct list *list, struct list_elem *element) {
-	struct list_elem *e;
+// void
+// list_insert_priority_ordered (struct list *list, struct list_elem *element) {
+// 	struct list_elem *e;
 
-	ASSERT (list != NULL);
-	ASSERT (element != NULL);
+// 	ASSERT (list != NULL);
+// 	ASSERT (element != NULL);
 
-	for (e = list_begin (list); e != list_end (list); e = list_next (e))
-		if (list_entry (e, struct thread, elem)->priority <= list_entry (element, struct thread, elem)->priority)
-			break;
-	return list_insert (e, element);
+// 	for (e = list_begin (list); e != list_end (list); e = list_next (e))
+// 		if (list_entry (e, struct thread, elem)->priority <= list_entry (element, struct thread, elem)->priority)
+// 			break;
+// 	return list_insert (e, element);
+// }
+bool priority_less (struct list_elem *element, struct list_elem *e, void *aux) {
+	return list_entry (element, struct thread, elem)->priority > list_entry (e, struct thread, elem)->priority;
 }
 /*================================================== IMPLEMENTATION  END  ==================================================*/
 
