@@ -1,10 +1,31 @@
 FAIL
-Kernel panic in run: PANIC at ../../threads/thread.c:260 in thread_unblock(): assertion `t->status == THREAD_BLOCKED' failed.
-Call stack: 0x8004213436 0x8004206e66 0x8004209b36 0x8004209fe0 0x800421857e 0x800420740a
-Translation of call stack:
-0x0000008004213436: debug_panic (lib/kernel/debug.c:32)
-0x0000008004206e66: thread_unblock (threads/thread.c:262)
-0x0000008004209b36: sema_up (threads/synch.c:115)
-0x0000008004209fe0: lock_release (threads/synch.c:227)
-0x000000800421857e: medium_thread_func (tests/threads/priority-donate-nest.c:76)
-0x000000800420740a: kernel_thread (threads/thread.c:448)
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (priority-donate-nest) begin
+  (priority-donate-nest) Low thread should have priority 32.  Actual priority: 32.
+  (priority-donate-nest) Low thread should have priority 33.  Actual priority: 33.
+  (priority-donate-nest) Medium thread should have priority 33.  Actual priority: 33.
+  (priority-donate-nest) Medium thread got the lock.
+  (priority-donate-nest) High thread got the lock.
+  (priority-donate-nest) High thread finished.
+  (priority-donate-nest) High thread should have just finished.
+  (priority-donate-nest) Middle thread finished.
+  (priority-donate-nest) Medium thread should just have finished.
+  (priority-donate-nest) Low thread should have priority 31.  Actual priority: 31.
+  (priority-donate-nest) end
+Differences in `diff -u' format:
+  (priority-donate-nest) begin
+- (priority-donate-nest) Low thread should have priority 32.  Actual priority: 32.
+- (priority-donate-nest) Low thread should have priority 33.  Actual priority: 33.
+- (priority-donate-nest) Medium thread should have priority 33.  Actual priority: 33.
+- (priority-donate-nest) Medium thread got the lock.
+- (priority-donate-nest) High thread got the lock.
+- (priority-donate-nest) High thread finished.
+- (priority-donate-nest) High thread should have just finished.
+- (priority-donate-nest) Middle thread finished.
++ (priority-donate-nest) Low thread should have priority 32.  Actual priority: 31.
++ (priority-donate-nest) Low thread should have priority 33.  Actual priority: 31.
+  (priority-donate-nest) Medium thread should just have finished.
+  (priority-donate-nest) Low thread should have priority 31.  Actual priority: 31.
+  (priority-donate-nest) end

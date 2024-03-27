@@ -1,13 +1,25 @@
 FAIL
-Kernel panic in run: PANIC at ../../threads/thread.c:260 in thread_unblock(): assertion `t->status == THREAD_BLOCKED' failed.
-Call stack: 0x8004213436 0x8004206e66 0x8004209b36 0x8004209fe0 0x800421ab18 0x8004216998 0x8004206636 0x8004206783 0x8004206120
-Translation of call stack:
-0x0000008004213436: debug_panic (lib/kernel/debug.c:32)
-0x0000008004206e66: thread_unblock (threads/thread.c:262)
-0x0000008004209b36: sema_up (threads/synch.c:115)
-0x0000008004209fe0: lock_release (threads/synch.c:227)
-0x000000800421ab18: test_mlfqs_block (tests/threads/mlfqs/mlfqs-block.c:46)
-0x0000008004216998: run_test (tests/threads/tests.c:57)
-0x0000008004206636: run_task (threads/init.c:252)
-0x0000008004206783: run_actions (threads/init.c:297)
-0x0000008004206120: main (threads/init.c:125)
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (mlfqs-block) begin
+  (mlfqs-block) Main thread acquiring lock.
+  (mlfqs-block) Main thread creating block thread, sleeping 25 seconds...
+  (mlfqs-block) Block thread spinning for 20 seconds...
+  (mlfqs-block) Block thread acquiring lock...
+  (mlfqs-block) Main thread spinning for 5 seconds...
+  (mlfqs-block) Main thread releasing lock.
+  (mlfqs-block) ...got it.
+  (mlfqs-block) Block thread should have already acquired lock.
+  (mlfqs-block) end
+Differences in `diff -u' format:
+  (mlfqs-block) begin
+  (mlfqs-block) Main thread acquiring lock.
+  (mlfqs-block) Main thread creating block thread, sleeping 25 seconds...
+  (mlfqs-block) Block thread spinning for 20 seconds...
+  (mlfqs-block) Block thread acquiring lock...
+  (mlfqs-block) Main thread spinning for 5 seconds...
+  (mlfqs-block) Main thread releasing lock.
+- (mlfqs-block) ...got it.
+  (mlfqs-block) Block thread should have already acquired lock.
+  (mlfqs-block) end

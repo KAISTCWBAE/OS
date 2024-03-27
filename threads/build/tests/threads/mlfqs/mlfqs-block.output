@@ -14,11 +14,11 @@ Executing 'mlfqs-block':
 (mlfqs-block) Block thread acquiring lock...
 (mlfqs-block) Main thread spinning for 5 seconds...
 (mlfqs-block) Main thread releasing lock.
-Kernel PANIC at ../../threads/thread.c:260 in thread_unblock(): assertion `t->status == THREAD_BLOCKED' failed.
-Call stack: 0x8004213436 0x8004206e66 0x8004209b36 0x8004209fe0 0x800421ab18 0x8004216998 0x8004206636 0x8004206783 0x8004206120.
-The `backtrace' program can make call stacks useful.
-Read "Backtraces" in the "Debugging Tools" chapter
-of the Pintos documentation for more information.
-Timer: 3042 ticks
-Thread: 500 idle ticks, 2542 kernel ticks, 0 user ticks
-Console: 1
+(mlfqs-block) Block thread should have already acquired lock.
+(mlfqs-block) end
+Execution of 'mlfqs-block' complete.
+Timer: 3043 ticks
+Thread: 501 idle ticks, 2542 kernel ticks, 0 user ticks
+Console: 794 characters output
+Keyboard: 0 keys pressed
+Powering off...

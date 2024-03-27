@@ -1,4 +1,4 @@
-TOTAL TESTING SCORE: 18.3%
+TOTAL TESTING SCORE: 32.7%
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
@@ -6,11 +6,11 @@ SUMMARY BY TEST SET
 
 Test Set                                      Pts Max  % Ttl  % Max
 --------------------------------------------- --- --- ------ ------
-tests/threads/Rubric.alarm                      5/  7  14.3%/ 20.0%
-tests/threads/Rubric.priority                   2/ 25   4.0%/ 50.0%
-tests/threads/mlfqs/Rubric                      0/  9   0.0%/ 30.0%
+tests/threads/Rubric.alarm                      7/  7  20.0%/ 20.0%
+tests/threads/Rubric.priority                   3/ 25   6.0%/ 50.0%
+tests/threads/mlfqs/Rubric                      2/  9   6.7%/ 30.0%
 --------------------------------------------- --- --- ------ ------
-Total                                                  18.3%/100.0%
+Total                                                  32.7%/100.0%
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
@@ -20,20 +20,20 @@ Functionality and robustness of alarm clock (tests/threads/Rubric.alarm):
 	     1/ 1 tests/threads/alarm-single
 	     1/ 1 tests/threads/alarm-multiple
 	     1/ 1 tests/threads/alarm-simultaneous
-	  ** 0/ 2 tests/threads/alarm-priority
+	     2/ 2 tests/threads/alarm-priority
 
 	     1/ 1 tests/threads/alarm-zero
 	     1/ 1 tests/threads/alarm-negative
 
 	- Section summary.
-	      5/  6 tests passed
-	      5/  7 points subtotal
+	      6/  6 tests passed
+	      7/  7 points subtotal
 
 Functionality of priority scheduler (tests/threads/Rubric.priority):
 	     1/ 1 tests/threads/priority-change
 	     1/ 1 tests/threads/priority-preempt
 
-	  ** 0/ 1 tests/threads/priority-fifo
+	     1/ 1 tests/threads/priority-fifo
 	  ** 0/ 2 tests/threads/priority-sema
 	  ** 0/ 2 tests/threads/priority-condvar
 
@@ -46,8 +46,8 @@ Functionality of priority scheduler (tests/threads/Rubric.priority):
 	  ** 0/ 2 tests/threads/priority-donate-lower
 
 	- Section summary.
-	      2/ 12 tests passed
-	      2/ 25 points subtotal
+	      3/ 12 tests passed
+	      3/ 25 points subtotal
 
 Functionality of advanced scheduler (tests/threads/mlfqs/Rubric):
 	  ** 0/ 1 tests/threads/mlfqs/mlfqs-load-1
@@ -56,8 +56,8 @@ Functionality of advanced scheduler (tests/threads/mlfqs/Rubric):
 
 	  ** 0/ 1 tests/threads/mlfqs/mlfqs-recent-1
 
-	  ** 0/ 1 tests/threads/mlfqs/mlfqs-fair-2
-	  ** 0/ 1 tests/threads/mlfqs/mlfqs-fair-20
+	     1/ 1 tests/threads/mlfqs/mlfqs-fair-2
+	     1/ 1 tests/threads/mlfqs/mlfqs-fair-20
 
 	  ** 0/ 1 tests/threads/mlfqs/mlfqs-nice-2
 	  ** 0/ 1 tests/threads/mlfqs/mlfqs-nice-10
@@ -65,103 +65,62 @@ Functionality of advanced scheduler (tests/threads/mlfqs/Rubric):
 	  ** 0/ 1 tests/threads/mlfqs/mlfqs-block
 
 	- Section summary.
-	      0/  9 tests passed
-	      0/  9 points subtotal
+	      2/  9 tests passed
+	      2/  9 points subtotal
 
-
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-
-DETAILS OF tests/threads/alarm-priority FAILURE:
-
-Kernel panic in run: PANIC at ../../threads/thread.c:260 in thread_unblock(): assertion `t->status == THREAD_BLOCKED' failed.
-Call stack: 0x8004213436 0x8004206e66 0x8004209b36 0x800421779d 0x800420740a
-Translation of call stack:
-0x0000008004213436: debug_panic (lib/kernel/debug.c:32)
-0x0000008004206e66: thread_unblock (threads/thread.c:262)
-0x0000008004209b36: sema_up (threads/synch.c:115)
-0x000000800421779d: alarm_priority_thread (tests/threads/alarm-priority.c:58)
-0x000000800420740a: kernel_thread (threads/thread.c:448)
-
-OUTPUT FROM tests/threads/alarm-priority:
-
-Kernel command line: -q run alarm-priority
-0 ~ 9fc00 1
-100000 ~ 13e0000 1
-Pintos booting with: 
-	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
-	ext_mem: 0x100000 ~ 0x13e0000 (Usable: 19,328 kB)
-Calibrating timer...  157,081,600 loops/s.
-Boot complete.
-Executing 'alarm-priority':
-(alarm-priority) begin
-(alarm-priority) Thread priority 30 woke up.
-Kernel PANIC at ../../threads/thread.c:260 in thread_unblock(): assertion `t->status == THREAD_BLOCKED' failed.
-Call stack: 0x8004213436 0x8004206e66 0x8004209b36 0x800421779d 0x800420740a.
-The `backtrace' program can make call stacks useful.
-Read "Backtraces" in the "Debugging Tools" chapter
-of the Pintos documentation for more information.
-Timer: 541 ticks
-Thread: 489 idle ticks, 52 kernel ticks, 0 user ticks
-Console: 
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-
-DETAILS OF tests/threads/priority-fifo FAILURE:
-
-First iteration does not list all threads 0...15
-
-OUTPUT FROM tests/threads/priority-fifo:
-
-Kernel command line: -q run priority-fifo
-0 ~ 9fc00 1
-100000 ~ 13e0000 1
-Pintos booting with: 
-	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
-	ext_mem: 0x100000 ~ 0x13e0000 (Usable: 19,328 kB)
-Calibrating timer...  157,081,600 loops/s.
-Boot complete.
-Executing 'priority-fifo':
-(priority-fifo) begin
-(priority-fifo) 16 threads will iterate 16 times in the same order each time.
-(priority-fifo) If the order varies then there is a bug.
-(priority-fifo) iteration: 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15
-(priority-fifo) iteration: 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14
-(priority-fifo) iteration: 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13
-(priority-fifo) iteration: 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12
-(priority-fifo) iteration: 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11
-(priority-fifo) iteration: 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10
-(priority-fifo) iteration: 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9
-(priority-fifo) iteration: 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8
-(priority-fifo) iteration: 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7
-(priority-fifo) iteration: 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6
-(priority-fifo) iteration: 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5
-(priority-fifo) iteration: 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4
-(priority-fifo) iteration: 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-(priority-fifo) iteration: 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
-(priority-fifo) iteration: 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
-(priority-fifo) iteration: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-(priority-fifo) end
-Execution of 'priority-fifo' complete.
-Timer: 44 ticks
-Thread: 0 idle ticks, 44 kernel ticks, 0 user ticks
-Console: 1597 characters output
-Keyboard: 0 keys pressed
-Powering off...
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
 DETAILS OF tests/threads/priority-sema FAILURE:
 
-Kernel panic in run: PANIC at ../../threads/thread.c:260 in thread_unblock(): assertion `t->status == THREAD_BLOCKED' failed.
-Call stack: 0x8004213436 0x8004206e66 0x8004209b36 0x80042192b2 0x8004216998 0x8004206636 0x8004206783 0x8004206120
-Translation of call stack:
-0x0000008004213436: debug_panic (lib/kernel/debug.c:32)
-0x0000008004206e66: thread_unblock (threads/thread.c:262)
-0x0000008004209b36: sema_up (threads/synch.c:115)
-0x00000080042192b2: test_priority_sema (tests/threads/priority-sema.c:36 (discriminator 3))
-0x0000008004216998: run_test (tests/threads/tests.c:57)
-0x0000008004206636: run_task (threads/init.c:252)
-0x0000008004206783: run_actions (threads/init.c:297)
-0x0000008004206120: main (threads/init.c:125)
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (priority-sema) begin
+  (priority-sema) Thread priority 30 woke up.
+  (priority-sema) Back in main thread.
+  (priority-sema) Thread priority 29 woke up.
+  (priority-sema) Back in main thread.
+  (priority-sema) Thread priority 28 woke up.
+  (priority-sema) Back in main thread.
+  (priority-sema) Thread priority 27 woke up.
+  (priority-sema) Back in main thread.
+  (priority-sema) Thread priority 26 woke up.
+  (priority-sema) Back in main thread.
+  (priority-sema) Thread priority 25 woke up.
+  (priority-sema) Back in main thread.
+  (priority-sema) Thread priority 24 woke up.
+  (priority-sema) Back in main thread.
+  (priority-sema) Thread priority 23 woke up.
+  (priority-sema) Back in main thread.
+  (priority-sema) Thread priority 22 woke up.
+  (priority-sema) Back in main thread.
+  (priority-sema) Thread priority 21 woke up.
+  (priority-sema) Back in main thread.
+  (priority-sema) end
+Differences in `diff -u' format:
+  (priority-sema) begin
+- (priority-sema) Thread priority 30 woke up.
+  (priority-sema) Back in main thread.
+- (priority-sema) Thread priority 29 woke up.
+  (priority-sema) Back in main thread.
+- (priority-sema) Thread priority 28 woke up.
+  (priority-sema) Back in main thread.
+- (priority-sema) Thread priority 27 woke up.
+  (priority-sema) Back in main thread.
+- (priority-sema) Thread priority 26 woke up.
+  (priority-sema) Back in main thread.
+- (priority-sema) Thread priority 25 woke up.
+  (priority-sema) Back in main thread.
+- (priority-sema) Thread priority 24 woke up.
+  (priority-sema) Back in main thread.
+- (priority-sema) Thread priority 23 woke up.
+  (priority-sema) Back in main thread.
+- (priority-sema) Thread priority 22 woke up.
+  (priority-sema) Back in main thread.
+- (priority-sema) Thread priority 21 woke up.
+  (priority-sema) Back in main thread.
+  (priority-sema) end
 
 OUTPUT FROM tests/threads/priority-sema:
 
@@ -171,35 +130,100 @@ Kernel command line: -q run priority-sema
 Pintos booting with: 
 	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
 	ext_mem: 0x100000 ~ 0x13e0000 (Usable: 19,328 kB)
-Calibrating timer...  130,867,200 loops/s.
+Calibrating timer...  157,081,600 loops/s.
 Boot complete.
 Executing 'priority-sema':
 (priority-sema) begin
 (priority-sema) Back in main thread.
-Kernel PANIC at ../../threads/thread.c:260 in thread_unblock(): assertion `t->status == THREAD_BLOCKED' failed.
-Call stack: 0x8004213436 0x8004206e66 0x8004209b36 0x80042192b2 0x8004216998 0x8004206636 0x8004206783 0x8004206120.
-The `backtrace' program can make call stacks useful.
-Read "Backtraces" in the "Debugging Tools" chapter
-of the Pintos documentation for more information.
-Timer: 43 ticks
-Thread: 0 idle ticks, 43 kernel ticks, 0 user ticks
-Console: 
+(priority-sema) Back in main thread.
+(priority-sema) Back in main thread.
+(priority-sema) Back in main thread.
+(priority-sema) Back in main thread.
+(priority-sema) Back in main thread.
+(priority-sema) Back in main thread.
+(priority-sema) Back in main thread.
+(priority-sema) Back in main thread.
+(priority-sema) Back in main thread.
+(priority-sema) end
+Execution of 'priority-sema' complete.
+Timer: 44 ticks
+Thread: 1 idle ticks, 43 kernel ticks, 0 user ticks
+Console: 792 characters output
+Keyboard: 0 keys pressed
+Powering off...
+
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
 DETAILS OF tests/threads/priority-condvar FAILURE:
 
-Kernel panic in run: PANIC at ../../threads/thread.c:260 in thread_unblock(): assertion `t->status == THREAD_BLOCKED' failed.
-Call stack: 0x8004213436 0x8004206e66 0x8004209b36 0x800420a404 0x80042194b7 0x8004216998 0x8004206636 0x8004206783 0x8004206120
-Translation of call stack:
-0x0000008004213436: debug_panic (lib/kernel/debug.c:32)
-0x0000008004206e66: thread_unblock (threads/thread.c:262)
-0x0000008004209b36: sema_up (threads/synch.c:115)
-0x000000800420a404: cond_signal (threads/synch.c:308)
-0x00000080042194b7: test_priority_condvar (tests/threads/priority-condvar.c:41 (discriminator 3))
-0x0000008004216998: run_test (tests/threads/tests.c:57)
-0x0000008004206636: run_task (threads/init.c:252)
-0x0000008004206783: run_actions (threads/init.c:297)
-0x0000008004206120: main (threads/init.c:125)
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (priority-condvar) begin
+  (priority-condvar) Thread priority 23 starting.
+  (priority-condvar) Thread priority 22 starting.
+  (priority-condvar) Thread priority 21 starting.
+  (priority-condvar) Thread priority 30 starting.
+  (priority-condvar) Thread priority 29 starting.
+  (priority-condvar) Thread priority 28 starting.
+  (priority-condvar) Thread priority 27 starting.
+  (priority-condvar) Thread priority 26 starting.
+  (priority-condvar) Thread priority 25 starting.
+  (priority-condvar) Thread priority 24 starting.
+  (priority-condvar) Signaling...
+  (priority-condvar) Thread priority 30 woke up.
+  (priority-condvar) Signaling...
+  (priority-condvar) Thread priority 29 woke up.
+  (priority-condvar) Signaling...
+  (priority-condvar) Thread priority 28 woke up.
+  (priority-condvar) Signaling...
+  (priority-condvar) Thread priority 27 woke up.
+  (priority-condvar) Signaling...
+  (priority-condvar) Thread priority 26 woke up.
+  (priority-condvar) Signaling...
+  (priority-condvar) Thread priority 25 woke up.
+  (priority-condvar) Signaling...
+  (priority-condvar) Thread priority 24 woke up.
+  (priority-condvar) Signaling...
+  (priority-condvar) Thread priority 23 woke up.
+  (priority-condvar) Signaling...
+  (priority-condvar) Thread priority 22 woke up.
+  (priority-condvar) Signaling...
+  (priority-condvar) Thread priority 21 woke up.
+  (priority-condvar) end
+Differences in `diff -u' format:
+  (priority-condvar) begin
+  (priority-condvar) Thread priority 23 starting.
+  (priority-condvar) Thread priority 22 starting.
+  (priority-condvar) Thread priority 21 starting.
+  (priority-condvar) Thread priority 30 starting.
+  (priority-condvar) Thread priority 29 starting.
+  (priority-condvar) Thread priority 28 starting.
+  (priority-condvar) Thread priority 27 starting.
+  (priority-condvar) Thread priority 26 starting.
+  (priority-condvar) Thread priority 25 starting.
+  (priority-condvar) Thread priority 24 starting.
+  (priority-condvar) Signaling...
+- (priority-condvar) Thread priority 30 woke up.
+  (priority-condvar) Signaling...
+- (priority-condvar) Thread priority 29 woke up.
+  (priority-condvar) Signaling...
+- (priority-condvar) Thread priority 28 woke up.
+  (priority-condvar) Signaling...
+- (priority-condvar) Thread priority 27 woke up.
+  (priority-condvar) Signaling...
+- (priority-condvar) Thread priority 26 woke up.
+  (priority-condvar) Signaling...
+- (priority-condvar) Thread priority 25 woke up.
+  (priority-condvar) Signaling...
+- (priority-condvar) Thread priority 24 woke up.
+  (priority-condvar) Signaling...
+- (priority-condvar) Thread priority 23 woke up.
+  (priority-condvar) Signaling...
+- (priority-condvar) Thread priority 22 woke up.
+  (priority-condvar) Signaling...
+- (priority-condvar) Thread priority 21 woke up.
+  (priority-condvar) end
 
 OUTPUT FROM tests/threads/priority-condvar:
 
@@ -225,19 +249,52 @@ Executing 'priority-condvar':
 (priority-condvar) Thread priority 24 starting.
 (priority-condvar) Signaling...
 (priority-condvar) Signaling...
-Kernel PANIC at ../../threads/thread.c:260 in thread_unblock(): assertion `t->status == THREAD_BLOCKED' failed.
-Call stack: 0x8004213436 0x8004206e66 0x8004209b36 0x800420a404 0x80042194b7 0x8004216998 0x8004206636 0x8004206783 0x8004206120.
-The `backtrace' program can make call stacks useful.
-Read "Backtraces" in the "Debugging Tools" chapter
-of the Pintos documentation for more information.
-Timer: 43 ticks
-Thread: 0 idle ticks, 43 kernel ticks, 0 user ticks
-Console: 1
+(priority-condvar) Signaling...
+(priority-condvar) Signaling...
+(priority-condvar) Signaling...
+(priority-condvar) Signaling...
+(priority-condvar) Signaling...
+(priority-condvar) Signaling...
+(priority-condvar) Signaling...
+(priority-condvar) Signaling...
+(priority-condvar) end
+Execution of 'priority-condvar' complete.
+Timer: 45 ticks
+Thread: 1 idle ticks, 44 kernel ticks, 0 user ticks
+Console: 1237 characters output
+Keyboard: 0 keys pressed
+Powering off...
+
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
 DETAILS OF tests/threads/priority-donate-one FAILURE:
 
-run: TIMEOUT
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (priority-donate-one) begin
+  (priority-donate-one) This thread should have priority 32.  Actual priority: 32.
+  (priority-donate-one) This thread should have priority 33.  Actual priority: 33.
+  (priority-donate-one) acquire2: got the lock
+  (priority-donate-one) acquire2: done
+  (priority-donate-one) acquire1: got the lock
+  (priority-donate-one) acquire1: done
+  (priority-donate-one) acquire2, acquire1 must already have finished, in that order.
+  (priority-donate-one) This should be the last line before finishing this test.
+  (priority-donate-one) end
+Differences in `diff -u' format:
+  (priority-donate-one) begin
+- (priority-donate-one) This thread should have priority 32.  Actual priority: 32.
+- (priority-donate-one) This thread should have priority 33.  Actual priority: 33.
+- (priority-donate-one) acquire2: got the lock
+- (priority-donate-one) acquire2: done
+- (priority-donate-one) acquire1: got the lock
+- (priority-donate-one) acquire1: done
++ (priority-donate-one) This thread should have priority 32.  Actual priority: 31.
++ (priority-donate-one) This thread should have priority 33.  Actual priority: 31.
+  (priority-donate-one) acquire2, acquire1 must already have finished, in that order.
+  (priority-donate-one) This should be the last line before finishing this test.
+  (priority-donate-one) end
 
 OUTPUT FROM tests/threads/priority-donate-one:
 
@@ -252,7 +309,17 @@ Boot complete.
 Executing 'priority-donate-one':
 (priority-donate-one) begin
 (priority-donate-one) This thread should have priority 32.  Actual priority: 31.
-TIMEOUT
+(priority-donate-one) This thread should have priority 33.  Actual priority: 31.
+(priority-donate-one) acquire2, acquire1 must already have finished, in that order.
+(priority-donate-one) This should be the last line before finishing this test.
+(priority-donate-one) end
+Execution of 'priority-donate-one' complete.
+Timer: 44 ticks
+Thread: 1 idle ticks, 43 kernel ticks, 0 user ticks
+Console: 777 characters output
+Keyboard: 0 keys pressed
+Powering off...
+
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
 DETAILS OF tests/threads/priority-donate-multiple FAILURE:
@@ -297,7 +364,7 @@ Kernel command line: -q run priority-donate-multiple
 Pintos booting with: 
 	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
 	ext_mem: 0x100000 ~ 0x13e0000 (Usable: 19,328 kB)
-Calibrating timer...  157,081,600 loops/s.
+Calibrating timer...  104,755,200 loops/s.
 Boot complete.
 Executing 'priority-donate-multiple':
 (priority-donate-multiple) begin
@@ -309,8 +376,8 @@ Executing 'priority-donate-multiple':
 (priority-donate-multiple) Main thread should have priority 31.  Actual priority: 31.
 (priority-donate-multiple) end
 Execution of 'priority-donate-multiple' complete.
-Timer: 42 ticks
-Thread: 0 idle ticks, 43 kernel ticks, 0 user ticks
+Timer: 41 ticks
+Thread: 1 idle ticks, 40 kernel ticks, 0 user ticks
 Console: 947 characters output
 Keyboard: 0 keys pressed
 Powering off...
@@ -371,8 +438,8 @@ Executing 'priority-donate-multiple2':
 (priority-donate-multiple2) Main thread should have priority 31.  Actual priority: 31.
 (priority-donate-multiple2) end
 Execution of 'priority-donate-multiple2' complete.
-Timer: 42 ticks
-Thread: 0 idle ticks, 43 kernel ticks, 0 user ticks
+Timer: 45 ticks
+Thread: 1 idle ticks, 44 kernel ticks, 0 user ticks
 Console: 963 characters output
 Keyboard: 0 keys pressed
 Powering off...
@@ -381,15 +448,36 @@ Powering off...
 
 DETAILS OF tests/threads/priority-donate-nest FAILURE:
 
-Kernel panic in run: PANIC at ../../threads/thread.c:260 in thread_unblock(): assertion `t->status == THREAD_BLOCKED' failed.
-Call stack: 0x8004213436 0x8004206e66 0x8004209b36 0x8004209fe0 0x800421857e 0x800420740a
-Translation of call stack:
-0x0000008004213436: debug_panic (lib/kernel/debug.c:32)
-0x0000008004206e66: thread_unblock (threads/thread.c:262)
-0x0000008004209b36: sema_up (threads/synch.c:115)
-0x0000008004209fe0: lock_release (threads/synch.c:227)
-0x000000800421857e: medium_thread_func (tests/threads/priority-donate-nest.c:76)
-0x000000800420740a: kernel_thread (threads/thread.c:448)
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (priority-donate-nest) begin
+  (priority-donate-nest) Low thread should have priority 32.  Actual priority: 32.
+  (priority-donate-nest) Low thread should have priority 33.  Actual priority: 33.
+  (priority-donate-nest) Medium thread should have priority 33.  Actual priority: 33.
+  (priority-donate-nest) Medium thread got the lock.
+  (priority-donate-nest) High thread got the lock.
+  (priority-donate-nest) High thread finished.
+  (priority-donate-nest) High thread should have just finished.
+  (priority-donate-nest) Middle thread finished.
+  (priority-donate-nest) Medium thread should just have finished.
+  (priority-donate-nest) Low thread should have priority 31.  Actual priority: 31.
+  (priority-donate-nest) end
+Differences in `diff -u' format:
+  (priority-donate-nest) begin
+- (priority-donate-nest) Low thread should have priority 32.  Actual priority: 32.
+- (priority-donate-nest) Low thread should have priority 33.  Actual priority: 33.
+- (priority-donate-nest) Medium thread should have priority 33.  Actual priority: 33.
+- (priority-donate-nest) Medium thread got the lock.
+- (priority-donate-nest) High thread got the lock.
+- (priority-donate-nest) High thread finished.
+- (priority-donate-nest) High thread should have just finished.
+- (priority-donate-nest) Middle thread finished.
++ (priority-donate-nest) Low thread should have priority 32.  Actual priority: 31.
++ (priority-donate-nest) Low thread should have priority 33.  Actual priority: 31.
+  (priority-donate-nest) Medium thread should just have finished.
+  (priority-donate-nest) Low thread should have priority 31.  Actual priority: 31.
+  (priority-donate-nest) end
 
 OUTPUT FROM tests/threads/priority-donate-nest:
 
@@ -405,16 +493,16 @@ Executing 'priority-donate-nest':
 (priority-donate-nest) begin
 (priority-donate-nest) Low thread should have priority 32.  Actual priority: 31.
 (priority-donate-nest) Low thread should have priority 33.  Actual priority: 31.
-(priority-donate-nest) Medium thread should have priority 33.  Actual priority: 32.
-(priority-donate-nest) Medium thread got the lock.
-Kernel PANIC at ../../threads/thread.c:260 in thread_unblock(): assertion `t->status == THREAD_BLOCKED' failed.
-Call stack: 0x8004213436 0x8004206e66 0x8004209b36 0x8004209fe0 0x800421857e 0x800420740a.
-The `backtrace' program can make call stacks useful.
-Read "Backtraces" in the "Debugging Tools" chapter
-of the Pintos documentation for more information.
-Timer: 42 ticks
-Thread: 0 idle ticks, 42 kernel ticks, 0 user ticks
-Console: 1
+(priority-donate-nest) Medium thread should just have finished.
+(priority-donate-nest) Low thread should have priority 31.  Actual priority: 31.
+(priority-donate-nest) end
+Execution of 'priority-donate-nest' complete.
+Timer: 44 ticks
+Thread: 1 idle ticks, 43 kernel ticks, 0 user ticks
+Console: 764 characters output
+Keyboard: 0 keys pressed
+Powering off...
+
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
 DETAILS OF tests/threads/priority-donate-chain FAILURE:
@@ -523,7 +611,7 @@ Kernel command line: -q run priority-donate-chain
 Pintos booting with: 
 	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
 	ext_mem: 0x100000 ~ 0x13e0000 (Usable: 19,328 kB)
-Calibrating timer...  104,755,200 loops/s.
+Calibrating timer...  157,081,600 loops/s.
 Boot complete.
 Executing 'priority-donate-chain':
 (priority-donate-chain) begin
@@ -545,8 +633,8 @@ Executing 'priority-donate-chain':
 (priority-donate-chain) main finishing with priority 0.
 (priority-donate-chain) end
 Execution of 'priority-donate-chain' complete.
-Timer: 42 ticks
-Thread: 0 idle ticks, 42 kernel ticks, 0 user ticks
+Timer: 46 ticks
+Thread: 1 idle ticks, 45 kernel ticks, 0 user ticks
 Console: 1408 characters output
 Keyboard: 0 keys pressed
 Powering off...
@@ -586,7 +674,7 @@ Kernel command line: -q run priority-donate-sema
 Pintos booting with: 
 	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
 	ext_mem: 0x100000 ~ 0x13e0000 (Usable: 19,328 kB)
-Calibrating timer...  147,251,200 loops/s.
+Calibrating timer...  157,081,600 loops/s.
 Boot complete.
 Executing 'priority-donate-sema':
 (priority-donate-sema) begin
@@ -595,7 +683,7 @@ Executing 'priority-donate-sema':
 (priority-donate-sema) end
 Execution of 'priority-donate-sema' complete.
 Timer: 44 ticks
-Thread: 0 idle ticks, 44 kernel ticks, 0 user ticks
+Thread: 1 idle ticks, 43 kernel ticks, 0 user ticks
 Console: 549 characters output
 Keyboard: 0 keys pressed
 Powering off...
@@ -648,8 +736,8 @@ Executing 'priority-donate-lower':
 (priority-donate-lower) Main thread should have priority 21.  Actual priority: 21.
 (priority-donate-lower) end
 Execution of 'priority-donate-lower' complete.
-Timer: 42 ticks
-Thread: 0 idle ticks, 42 kernel ticks, 0 user ticks
+Timer: 45 ticks
+Thread: 1 idle ticks, 44 kernel ticks, 0 user ticks
 Console: 821 characters output
 Keyboard: 0 keys pressed
 Powering off...
@@ -659,12 +747,12 @@ Powering off...
 DETAILS OF tests/threads/mlfqs/mlfqs-load-1 FAILURE:
 
 Kernel panic in run: PANIC at ../../tests/threads/tests.c:93 in fail(): test failed
-Call stack: 0x8004213436 0x8004216b5e 0x8004219b9a 0x8004216998 0x8004206636 0x8004206783 0x8004206120
+Call stack: 0x800421342a 0x8004216a65 0x8004219aa1 0x800421689f 0x8004206636 0x8004206783 0x8004206120
 Translation of call stack:
-0x0000008004213436: debug_panic (lib/kernel/debug.c:32)
-0x0000008004216b5e: pass (tests/threads/tests.c:99)
-0x0000008004219b9a: test_mlfqs_load_1 (tests/threads/mlfqs/mlfqs-load-1.c:31)
-0x0000008004216998: run_test (tests/threads/tests.c:57)
+0x000000800421342a: debug_panic (lib/kernel/debug.c:32)
+0x0000008004216a65: pass (tests/threads/tests.c:99)
+0x0000008004219aa1: test_mlfqs_load_1 (tests/threads/mlfqs/mlfqs-load-1.c:31)
+0x000000800421689f: run_test (tests/threads/tests.c:57)
 0x0000008004206636: run_task (threads/init.c:252)
 0x0000008004206783: run_actions (threads/init.c:297)
 0x0000008004206120: main (threads/init.c:125)
@@ -684,12 +772,12 @@ Executing 'mlfqs-load-1':
 (mlfqs-load-1) spinning for up to 45 seconds, please wait...
 (mlfqs-load-1) FAIL: load average stayed below 0.5 for more than 45 seconds
 Kernel PANIC at ../../tests/threads/tests.c:93 in fail(): test failed
-Call stack: 0x8004213436 0x8004216b5e 0x8004219b9a 0x8004216998 0x8004206636 0x8004206783 0x8004206120.
+Call stack: 0x800421342a 0x8004216a65 0x8004219aa1 0x800421689f 0x8004206636 0x8004206783 0x8004206120.
 The `backtrace' program can make call stacks useful.
 Read "Backtraces" in the "Debugging Tools" chapter
 of the Pintos documentation for more information.
-Timer: 4641 ticks
-Thread: 0 idle ticks, 4641 kernel ticks, 0 user ticks
+Timer: 4643 ticks
+Thread: 1 idle ticks, 4642 kernel ticks, 0 user ticks
 Console: 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
@@ -894,8 +982,8 @@ Executing 'mlfqs-load-60':
 (mlfqs-load-60) After 178 seconds, load average=0.00.
 (mlfqs-load-60) end
 Execution of 'mlfqs-load-60' complete.
-Timer: 18841 ticks
-Thread: 12798 idle ticks, 6043 kernel ticks, 0 user ticks
+Timer: 18843 ticks
+Thread: 12798 idle ticks, 6045 kernel ticks, 0 user ticks
 Console: 5342 characters output
 Keyboard: 0 keys pressed
 Powering off...
@@ -1005,7 +1093,7 @@ Kernel command line: -q -mlfqs run mlfqs-load-avg
 Pintos booting with: 
 	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
 	ext_mem: 0x100000 ~ 0x13e0000 (Usable: 19,328 kB)
-Calibrating timer...  157,081,600 loops/s.
+Calibrating timer...  156,467,200 loops/s.
 Boot complete.
 Executing 'mlfqs-load-avg':
 (mlfqs-load-avg) begin
@@ -1103,8 +1191,8 @@ Executing 'mlfqs-load-avg':
 (mlfqs-load-avg) After 178 seconds, load average=0.00.
 (mlfqs-load-avg) end
 Execution of 'mlfqs-load-avg' complete.
-Timer: 18841 ticks
-Thread: 6898 idle ticks, 11943 kernel ticks, 0 user ticks
+Timer: 18845 ticks
+Thread: 6899 idle ticks, 11946 kernel ticks, 0 user ticks
 Console: 5433 characters output
 Keyboard: 0 keys pressed
 Powering off...
@@ -1214,7 +1302,7 @@ Kernel command line: -q -mlfqs run mlfqs-recent-1
 Pintos booting with: 
 	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
 	ext_mem: 0x100000 ~ 0x13e0000 (Usable: 19,328 kB)
-Calibrating timer...  130,867,200 loops/s.
+Calibrating timer...  157,081,600 loops/s.
 Boot complete.
 Executing 'mlfqs-recent-1':
 (mlfqs-recent-1) begin
@@ -1319,119 +1407,13 @@ Powering off...
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
-DETAILS OF tests/threads/mlfqs/mlfqs-fair-2 FAILURE:
-
-Some tick counts were missing or differed from those expected by more than 50.
-thread   actual <-> expected explanation
------- -------- --- -------- ----------------------------------------
-     0     3000 >>> 1500     Too big, by 1450.
-     1        0 <<< 1500     Too small, by 1450.
-
-OUTPUT FROM tests/threads/mlfqs/mlfqs-fair-2:
-
-Kernel command line: -q -mlfqs run mlfqs-fair-2
-0 ~ 9fc00 1
-100000 ~ 13e0000 1
-Pintos booting with: 
-	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
-	ext_mem: 0x100000 ~ 0x13e0000 (Usable: 19,328 kB)
-Calibrating timer...  157,081,600 loops/s.
-Boot complete.
-Executing 'mlfqs-fair-2':
-(mlfqs-fair-2) begin
-(mlfqs-fair-2) Starting 2 threads...
-(mlfqs-fair-2) Starting threads took 0 ticks.
-(mlfqs-fair-2) Sleeping 40 seconds to let threads run, please wait...
-(mlfqs-fair-2) Thread 0 received 3000 ticks.
-(mlfqs-fair-2) Thread 1 received 0 ticks.
-(mlfqs-fair-2) end
-Execution of 'mlfqs-fair-2' complete.
-Timer: 4042 ticks
-Thread: 1000 idle ticks, 3042 kernel ticks, 0 user ticks
-Console: 671 characters output
-Keyboard: 0 keys pressed
-Powering off...
-
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-
-DETAILS OF tests/threads/mlfqs/mlfqs-fair-20 FAILURE:
-
-Some tick counts were missing or differed from those expected by more than 20.
-thread   actual <-> expected explanation
------- -------- --- -------- ----------------------------------------
-     0     3001 >>> 152      Too big, by 2829.
-     1        0 <<< 152      Too small, by 132.
-     2        0 <<< 152      Too small, by 132.
-     3        0 <<< 152      Too small, by 132.
-     4        0 <<< 152      Too small, by 132.
-     5        0 <<< 152      Too small, by 132.
-     6        0 <<< 152      Too small, by 132.
-     7        0 <<< 152      Too small, by 132.
-     8        0 <<< 152      Too small, by 132.
-     9        0 <<< 152      Too small, by 132.
-    10        0 <<< 148      Too small, by 128.
-    11        0 <<< 148      Too small, by 128.
-    12        0 <<< 148      Too small, by 128.
-    13        0 <<< 148      Too small, by 128.
-    14        0 <<< 148      Too small, by 128.
-    15        0 <<< 148      Too small, by 128.
-    16        0 <<< 148      Too small, by 128.
-    17        0 <<< 148      Too small, by 128.
-    18        0 <<< 148      Too small, by 128.
-    19        0 <<< 148      Too small, by 128.
-
-OUTPUT FROM tests/threads/mlfqs/mlfqs-fair-20:
-
-Kernel command line: -q -mlfqs run mlfqs-fair-20
-0 ~ 9fc00 1
-100000 ~ 13e0000 1
-Pintos booting with: 
-	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
-	ext_mem: 0x100000 ~ 0x13e0000 (Usable: 19,328 kB)
-Calibrating timer...  157,081,600 loops/s.
-Boot complete.
-Executing 'mlfqs-fair-20':
-(mlfqs-fair-20) begin
-(mlfqs-fair-20) Starting 20 threads...
-(mlfqs-fair-20) Starting threads took 1 ticks.
-(mlfqs-fair-20) Sleeping 40 seconds to let threads run, please wait...
-(mlfqs-fair-20) Thread 0 received 3001 ticks.
-(mlfqs-fair-20) Thread 1 received 0 ticks.
-(mlfqs-fair-20) Thread 2 received 0 ticks.
-(mlfqs-fair-20) Thread 3 received 0 ticks.
-(mlfqs-fair-20) Thread 4 received 0 ticks.
-(mlfqs-fair-20) Thread 5 received 0 ticks.
-(mlfqs-fair-20) Thread 6 received 0 ticks.
-(mlfqs-fair-20) Thread 7 received 0 ticks.
-(mlfqs-fair-20) Thread 8 received 0 ticks.
-(mlfqs-fair-20) Thread 9 received 0 ticks.
-(mlfqs-fair-20) Thread 10 received 0 ticks.
-(mlfqs-fair-20) Thread 11 received 0 ticks.
-(mlfqs-fair-20) Thread 12 received 0 ticks.
-(mlfqs-fair-20) Thread 13 received 0 ticks.
-(mlfqs-fair-20) Thread 14 received 0 ticks.
-(mlfqs-fair-20) Thread 15 received 0 ticks.
-(mlfqs-fair-20) Thread 16 received 0 ticks.
-(mlfqs-fair-20) Thread 17 received 0 ticks.
-(mlfqs-fair-20) Thread 18 received 0 ticks.
-(mlfqs-fair-20) Thread 19 received 0 ticks.
-(mlfqs-fair-20) end
-Execution of 'mlfqs-fair-20' complete.
-Timer: 4044 ticks
-Thread: 1000 idle ticks, 3044 kernel ticks, 0 user ticks
-Console: 1466 characters output
-Keyboard: 0 keys pressed
-Powering off...
-
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-
 DETAILS OF tests/threads/mlfqs/mlfqs-nice-2 FAILURE:
 
 Some tick counts were missing or differed from those expected by more than 50.
 thread   actual <-> expected explanation
 ------ -------- --- -------- ----------------------------------------
-     0     3000 >>> 1904     Too big, by 1046.
-     1        0 <<< 1096     Too small, by 1046.
+     0     1500 <<< 1904     Too small, by 354.
+     1     1500 >>> 1096     Too big, by 354.
 
 OUTPUT FROM tests/threads/mlfqs/mlfqs-nice-2:
 
@@ -1448,13 +1430,13 @@ Executing 'mlfqs-nice-2':
 (mlfqs-nice-2) Starting 2 threads...
 (mlfqs-nice-2) Starting threads took 0 ticks.
 (mlfqs-nice-2) Sleeping 40 seconds to let threads run, please wait...
-(mlfqs-nice-2) Thread 0 received 3000 ticks.
-(mlfqs-nice-2) Thread 1 received 0 ticks.
+(mlfqs-nice-2) Thread 0 received 1500 ticks.
+(mlfqs-nice-2) Thread 1 received 1500 ticks.
 (mlfqs-nice-2) end
 Execution of 'mlfqs-nice-2' complete.
-Timer: 4042 ticks
-Thread: 1000 idle ticks, 3042 kernel ticks, 0 user ticks
-Console: 671 characters output
+Timer: 4043 ticks
+Thread: 1001 idle ticks, 3042 kernel ticks, 0 user ticks
+Console: 674 characters output
 Keyboard: 0 keys pressed
 Powering off...
 
@@ -1465,16 +1447,16 @@ DETAILS OF tests/threads/mlfqs/mlfqs-nice-10 FAILURE:
 Some tick counts were missing or differed from those expected by more than 25.
 thread   actual <-> expected explanation
 ------ -------- --- -------- ----------------------------------------
-     0     3000 >>> 672      Too big, by 2303.
-     1        0 <<< 588      Too small, by 563.
-     2        0 <<< 492      Too small, by 467.
-     3        0 <<< 408      Too small, by 383.
-     4        0 <<< 316      Too small, by 291.
-     5        0 <<< 232      Too small, by 207.
-     6        0 <<< 152      Too small, by 127.
-     7        0 <<< 92       Too small, by 67.
-     8        0 <<< 40       Too small, by 15.
-     9        0  =  8        
+     0      300 <<< 672      Too small, by 347.
+     1      300 <<< 588      Too small, by 263.
+     2      300 <<< 492      Too small, by 167.
+     3      300 <<< 408      Too small, by 83.
+     4      300  =  316      
+     5      301 >>> 232      Too big, by 44.
+     6      300 >>> 152      Too big, by 123.
+     7      301 >>> 92       Too big, by 184.
+     8      301 >>> 40       Too big, by 236.
+     9      300 >>> 8        Too big, by 267.
 
 OUTPUT FROM tests/threads/mlfqs/mlfqs-nice-10:
 
@@ -1491,21 +1473,21 @@ Executing 'mlfqs-nice-10':
 (mlfqs-nice-10) Starting 10 threads...
 (mlfqs-nice-10) Starting threads took 1 ticks.
 (mlfqs-nice-10) Sleeping 40 seconds to let threads run, please wait...
-(mlfqs-nice-10) Thread 0 received 3000 ticks.
-(mlfqs-nice-10) Thread 1 received 0 ticks.
-(mlfqs-nice-10) Thread 2 received 0 ticks.
-(mlfqs-nice-10) Thread 3 received 0 ticks.
-(mlfqs-nice-10) Thread 4 received 0 ticks.
-(mlfqs-nice-10) Thread 5 received 0 ticks.
-(mlfqs-nice-10) Thread 6 received 0 ticks.
-(mlfqs-nice-10) Thread 7 received 0 ticks.
-(mlfqs-nice-10) Thread 8 received 0 ticks.
-(mlfqs-nice-10) Thread 9 received 0 ticks.
+(mlfqs-nice-10) Thread 0 received 300 ticks.
+(mlfqs-nice-10) Thread 1 received 300 ticks.
+(mlfqs-nice-10) Thread 2 received 300 ticks.
+(mlfqs-nice-10) Thread 3 received 300 ticks.
+(mlfqs-nice-10) Thread 4 received 300 ticks.
+(mlfqs-nice-10) Thread 5 received 301 ticks.
+(mlfqs-nice-10) Thread 6 received 300 ticks.
+(mlfqs-nice-10) Thread 7 received 301 ticks.
+(mlfqs-nice-10) Thread 8 received 301 ticks.
+(mlfqs-nice-10) Thread 9 received 300 ticks.
 (mlfqs-nice-10) end
 Execution of 'mlfqs-nice-10' complete.
-Timer: 4044 ticks
-Thread: 1000 idle ticks, 3044 kernel ticks, 0 user ticks
-Console: 1026 characters output
+Timer: 4046 ticks
+Thread: 1001 idle ticks, 3045 kernel ticks, 0 user ticks
+Console: 1043 characters output
 Keyboard: 0 keys pressed
 Powering off...
 
@@ -1513,18 +1495,30 @@ Powering off...
 
 DETAILS OF tests/threads/mlfqs/mlfqs-block FAILURE:
 
-Kernel panic in run: PANIC at ../../threads/thread.c:260 in thread_unblock(): assertion `t->status == THREAD_BLOCKED' failed.
-Call stack: 0x8004213436 0x8004206e66 0x8004209b36 0x8004209fe0 0x800421ab18 0x8004216998 0x8004206636 0x8004206783 0x8004206120
-Translation of call stack:
-0x0000008004213436: debug_panic (lib/kernel/debug.c:32)
-0x0000008004206e66: thread_unblock (threads/thread.c:262)
-0x0000008004209b36: sema_up (threads/synch.c:115)
-0x0000008004209fe0: lock_release (threads/synch.c:227)
-0x000000800421ab18: test_mlfqs_block (tests/threads/mlfqs/mlfqs-block.c:46)
-0x0000008004216998: run_test (tests/threads/tests.c:57)
-0x0000008004206636: run_task (threads/init.c:252)
-0x0000008004206783: run_actions (threads/init.c:297)
-0x0000008004206120: main (threads/init.c:125)
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (mlfqs-block) begin
+  (mlfqs-block) Main thread acquiring lock.
+  (mlfqs-block) Main thread creating block thread, sleeping 25 seconds...
+  (mlfqs-block) Block thread spinning for 20 seconds...
+  (mlfqs-block) Block thread acquiring lock...
+  (mlfqs-block) Main thread spinning for 5 seconds...
+  (mlfqs-block) Main thread releasing lock.
+  (mlfqs-block) ...got it.
+  (mlfqs-block) Block thread should have already acquired lock.
+  (mlfqs-block) end
+Differences in `diff -u' format:
+  (mlfqs-block) begin
+  (mlfqs-block) Main thread acquiring lock.
+  (mlfqs-block) Main thread creating block thread, sleeping 25 seconds...
+  (mlfqs-block) Block thread spinning for 20 seconds...
+  (mlfqs-block) Block thread acquiring lock...
+  (mlfqs-block) Main thread spinning for 5 seconds...
+  (mlfqs-block) Main thread releasing lock.
+- (mlfqs-block) ...got it.
+  (mlfqs-block) Block thread should have already acquired lock.
+  (mlfqs-block) end
 
 OUTPUT FROM tests/threads/mlfqs/mlfqs-block:
 
@@ -1544,11 +1538,11 @@ Executing 'mlfqs-block':
 (mlfqs-block) Block thread acquiring lock...
 (mlfqs-block) Main thread spinning for 5 seconds...
 (mlfqs-block) Main thread releasing lock.
-Kernel PANIC at ../../threads/thread.c:260 in thread_unblock(): assertion `t->status == THREAD_BLOCKED' failed.
-Call stack: 0x8004213436 0x8004206e66 0x8004209b36 0x8004209fe0 0x800421ab18 0x8004216998 0x8004206636 0x8004206783 0x8004206120.
-The `backtrace' program can make call stacks useful.
-Read "Backtraces" in the "Debugging Tools" chapter
-of the Pintos documentation for more information.
-Timer: 3042 ticks
-Thread: 500 idle ticks, 2542 kernel ticks, 0 user ticks
-Console: 1
+(mlfqs-block) Block thread should have already acquired lock.
+(mlfqs-block) end
+Execution of 'mlfqs-block' complete.
+Timer: 3043 ticks
+Thread: 501 idle ticks, 2542 kernel ticks, 0 user ticks
+Console: 794 characters output
+Keyboard: 0 keys pressed
+Powering off...
