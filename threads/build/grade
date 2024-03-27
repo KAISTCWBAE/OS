@@ -1,4 +1,4 @@
-TOTAL TESTING SCORE: 32.7%
+TOTAL TESTING SCORE: 40.7%
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
@@ -7,10 +7,10 @@ SUMMARY BY TEST SET
 Test Set                                      Pts Max  % Ttl  % Max
 --------------------------------------------- --- --- ------ ------
 tests/threads/Rubric.alarm                      7/  7  20.0%/ 20.0%
-tests/threads/Rubric.priority                   3/ 25   6.0%/ 50.0%
+tests/threads/Rubric.priority                   7/ 25  14.0%/ 50.0%
 tests/threads/mlfqs/Rubric                      2/  9   6.7%/ 30.0%
 --------------------------------------------- --- --- ------ ------
-Total                                                  32.7%/100.0%
+Total                                                  40.7%/100.0%
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
@@ -34,8 +34,8 @@ Functionality of priority scheduler (tests/threads/Rubric.priority):
 	     1/ 1 tests/threads/priority-preempt
 
 	     1/ 1 tests/threads/priority-fifo
-	  ** 0/ 2 tests/threads/priority-sema
-	  ** 0/ 2 tests/threads/priority-condvar
+	     2/ 2 tests/threads/priority-sema
+	     2/ 2 tests/threads/priority-condvar
 
 	  ** 0/ 2 tests/threads/priority-donate-one
 	  ** 0/ 3 tests/threads/priority-donate-multiple
@@ -46,8 +46,8 @@ Functionality of priority scheduler (tests/threads/Rubric.priority):
 	  ** 0/ 2 tests/threads/priority-donate-lower
 
 	- Section summary.
-	      3/ 12 tests passed
-	      3/ 25 points subtotal
+	      5/ 12 tests passed
+	      7/ 25 points subtotal
 
 Functionality of advanced scheduler (tests/threads/mlfqs/Rubric):
 	  ** 0/ 1 tests/threads/mlfqs/mlfqs-load-1
@@ -71,202 +71,6 @@ Functionality of advanced scheduler (tests/threads/mlfqs/Rubric):
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
-DETAILS OF tests/threads/priority-sema FAILURE:
-
-Test output failed to match any acceptable form.
-
-Acceptable output:
-  (priority-sema) begin
-  (priority-sema) Thread priority 30 woke up.
-  (priority-sema) Back in main thread.
-  (priority-sema) Thread priority 29 woke up.
-  (priority-sema) Back in main thread.
-  (priority-sema) Thread priority 28 woke up.
-  (priority-sema) Back in main thread.
-  (priority-sema) Thread priority 27 woke up.
-  (priority-sema) Back in main thread.
-  (priority-sema) Thread priority 26 woke up.
-  (priority-sema) Back in main thread.
-  (priority-sema) Thread priority 25 woke up.
-  (priority-sema) Back in main thread.
-  (priority-sema) Thread priority 24 woke up.
-  (priority-sema) Back in main thread.
-  (priority-sema) Thread priority 23 woke up.
-  (priority-sema) Back in main thread.
-  (priority-sema) Thread priority 22 woke up.
-  (priority-sema) Back in main thread.
-  (priority-sema) Thread priority 21 woke up.
-  (priority-sema) Back in main thread.
-  (priority-sema) end
-Differences in `diff -u' format:
-  (priority-sema) begin
-- (priority-sema) Thread priority 30 woke up.
-  (priority-sema) Back in main thread.
-- (priority-sema) Thread priority 29 woke up.
-  (priority-sema) Back in main thread.
-- (priority-sema) Thread priority 28 woke up.
-  (priority-sema) Back in main thread.
-- (priority-sema) Thread priority 27 woke up.
-  (priority-sema) Back in main thread.
-- (priority-sema) Thread priority 26 woke up.
-  (priority-sema) Back in main thread.
-- (priority-sema) Thread priority 25 woke up.
-  (priority-sema) Back in main thread.
-- (priority-sema) Thread priority 24 woke up.
-  (priority-sema) Back in main thread.
-- (priority-sema) Thread priority 23 woke up.
-  (priority-sema) Back in main thread.
-- (priority-sema) Thread priority 22 woke up.
-  (priority-sema) Back in main thread.
-- (priority-sema) Thread priority 21 woke up.
-  (priority-sema) Back in main thread.
-  (priority-sema) end
-
-OUTPUT FROM tests/threads/priority-sema:
-
-Kernel command line: -q run priority-sema
-0 ~ 9fc00 1
-100000 ~ 13e0000 1
-Pintos booting with: 
-	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
-	ext_mem: 0x100000 ~ 0x13e0000 (Usable: 19,328 kB)
-Calibrating timer...  157,081,600 loops/s.
-Boot complete.
-Executing 'priority-sema':
-(priority-sema) begin
-(priority-sema) Back in main thread.
-(priority-sema) Back in main thread.
-(priority-sema) Back in main thread.
-(priority-sema) Back in main thread.
-(priority-sema) Back in main thread.
-(priority-sema) Back in main thread.
-(priority-sema) Back in main thread.
-(priority-sema) Back in main thread.
-(priority-sema) Back in main thread.
-(priority-sema) Back in main thread.
-(priority-sema) end
-Execution of 'priority-sema' complete.
-Timer: 44 ticks
-Thread: 1 idle ticks, 43 kernel ticks, 0 user ticks
-Console: 792 characters output
-Keyboard: 0 keys pressed
-Powering off...
-
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-
-DETAILS OF tests/threads/priority-condvar FAILURE:
-
-Test output failed to match any acceptable form.
-
-Acceptable output:
-  (priority-condvar) begin
-  (priority-condvar) Thread priority 23 starting.
-  (priority-condvar) Thread priority 22 starting.
-  (priority-condvar) Thread priority 21 starting.
-  (priority-condvar) Thread priority 30 starting.
-  (priority-condvar) Thread priority 29 starting.
-  (priority-condvar) Thread priority 28 starting.
-  (priority-condvar) Thread priority 27 starting.
-  (priority-condvar) Thread priority 26 starting.
-  (priority-condvar) Thread priority 25 starting.
-  (priority-condvar) Thread priority 24 starting.
-  (priority-condvar) Signaling...
-  (priority-condvar) Thread priority 30 woke up.
-  (priority-condvar) Signaling...
-  (priority-condvar) Thread priority 29 woke up.
-  (priority-condvar) Signaling...
-  (priority-condvar) Thread priority 28 woke up.
-  (priority-condvar) Signaling...
-  (priority-condvar) Thread priority 27 woke up.
-  (priority-condvar) Signaling...
-  (priority-condvar) Thread priority 26 woke up.
-  (priority-condvar) Signaling...
-  (priority-condvar) Thread priority 25 woke up.
-  (priority-condvar) Signaling...
-  (priority-condvar) Thread priority 24 woke up.
-  (priority-condvar) Signaling...
-  (priority-condvar) Thread priority 23 woke up.
-  (priority-condvar) Signaling...
-  (priority-condvar) Thread priority 22 woke up.
-  (priority-condvar) Signaling...
-  (priority-condvar) Thread priority 21 woke up.
-  (priority-condvar) end
-Differences in `diff -u' format:
-  (priority-condvar) begin
-  (priority-condvar) Thread priority 23 starting.
-  (priority-condvar) Thread priority 22 starting.
-  (priority-condvar) Thread priority 21 starting.
-  (priority-condvar) Thread priority 30 starting.
-  (priority-condvar) Thread priority 29 starting.
-  (priority-condvar) Thread priority 28 starting.
-  (priority-condvar) Thread priority 27 starting.
-  (priority-condvar) Thread priority 26 starting.
-  (priority-condvar) Thread priority 25 starting.
-  (priority-condvar) Thread priority 24 starting.
-  (priority-condvar) Signaling...
-- (priority-condvar) Thread priority 30 woke up.
-  (priority-condvar) Signaling...
-- (priority-condvar) Thread priority 29 woke up.
-  (priority-condvar) Signaling...
-- (priority-condvar) Thread priority 28 woke up.
-  (priority-condvar) Signaling...
-- (priority-condvar) Thread priority 27 woke up.
-  (priority-condvar) Signaling...
-- (priority-condvar) Thread priority 26 woke up.
-  (priority-condvar) Signaling...
-- (priority-condvar) Thread priority 25 woke up.
-  (priority-condvar) Signaling...
-- (priority-condvar) Thread priority 24 woke up.
-  (priority-condvar) Signaling...
-- (priority-condvar) Thread priority 23 woke up.
-  (priority-condvar) Signaling...
-- (priority-condvar) Thread priority 22 woke up.
-  (priority-condvar) Signaling...
-- (priority-condvar) Thread priority 21 woke up.
-  (priority-condvar) end
-
-OUTPUT FROM tests/threads/priority-condvar:
-
-Kernel command line: -q run priority-condvar
-0 ~ 9fc00 1
-100000 ~ 13e0000 1
-Pintos booting with: 
-	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
-	ext_mem: 0x100000 ~ 0x13e0000 (Usable: 19,328 kB)
-Calibrating timer...  157,081,600 loops/s.
-Boot complete.
-Executing 'priority-condvar':
-(priority-condvar) begin
-(priority-condvar) Thread priority 23 starting.
-(priority-condvar) Thread priority 22 starting.
-(priority-condvar) Thread priority 21 starting.
-(priority-condvar) Thread priority 30 starting.
-(priority-condvar) Thread priority 29 starting.
-(priority-condvar) Thread priority 28 starting.
-(priority-condvar) Thread priority 27 starting.
-(priority-condvar) Thread priority 26 starting.
-(priority-condvar) Thread priority 25 starting.
-(priority-condvar) Thread priority 24 starting.
-(priority-condvar) Signaling...
-(priority-condvar) Signaling...
-(priority-condvar) Signaling...
-(priority-condvar) Signaling...
-(priority-condvar) Signaling...
-(priority-condvar) Signaling...
-(priority-condvar) Signaling...
-(priority-condvar) Signaling...
-(priority-condvar) Signaling...
-(priority-condvar) Signaling...
-(priority-condvar) end
-Execution of 'priority-condvar' complete.
-Timer: 45 ticks
-Thread: 1 idle ticks, 44 kernel ticks, 0 user ticks
-Console: 1237 characters output
-Keyboard: 0 keys pressed
-Powering off...
-
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-
 DETAILS OF tests/threads/priority-donate-one FAILURE:
 
 Test output failed to match any acceptable form.
@@ -286,12 +90,12 @@ Differences in `diff -u' format:
   (priority-donate-one) begin
 - (priority-donate-one) This thread should have priority 32.  Actual priority: 32.
 - (priority-donate-one) This thread should have priority 33.  Actual priority: 33.
-- (priority-donate-one) acquire2: got the lock
-- (priority-donate-one) acquire2: done
-- (priority-donate-one) acquire1: got the lock
-- (priority-donate-one) acquire1: done
 + (priority-donate-one) This thread should have priority 32.  Actual priority: 31.
 + (priority-donate-one) This thread should have priority 33.  Actual priority: 31.
+  (priority-donate-one) acquire2: got the lock
+  (priority-donate-one) acquire2: done
+  (priority-donate-one) acquire1: got the lock
+  (priority-donate-one) acquire1: done
   (priority-donate-one) acquire2, acquire1 must already have finished, in that order.
   (priority-donate-one) This should be the last line before finishing this test.
   (priority-donate-one) end
@@ -304,19 +108,23 @@ Kernel command line: -q run priority-donate-one
 Pintos booting with: 
 	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
 	ext_mem: 0x100000 ~ 0x13e0000 (Usable: 19,328 kB)
-Calibrating timer...  157,081,600 loops/s.
+Calibrating timer...  155,852,800 loops/s.
 Boot complete.
 Executing 'priority-donate-one':
 (priority-donate-one) begin
 (priority-donate-one) This thread should have priority 32.  Actual priority: 31.
 (priority-donate-one) This thread should have priority 33.  Actual priority: 31.
+(priority-donate-one) acquire2: got the lock
+(priority-donate-one) acquire2: done
+(priority-donate-one) acquire1: got the lock
+(priority-donate-one) acquire1: done
 (priority-donate-one) acquire2, acquire1 must already have finished, in that order.
 (priority-donate-one) This should be the last line before finishing this test.
 (priority-donate-one) end
 Execution of 'priority-donate-one' complete.
-Timer: 44 ticks
-Thread: 1 idle ticks, 43 kernel ticks, 0 user ticks
-Console: 777 characters output
+Timer: 45 ticks
+Thread: 0 idle ticks, 45 kernel ticks, 0 user ticks
+Console: 941 characters output
 Keyboard: 0 keys pressed
 Powering off...
 
@@ -343,15 +151,15 @@ Differences in `diff -u' format:
   (priority-donate-multiple) begin
 - (priority-donate-multiple) Main thread should have priority 32.  Actual priority: 32.
 - (priority-donate-multiple) Main thread should have priority 33.  Actual priority: 33.
-- (priority-donate-multiple) Thread b acquired lock b.
-- (priority-donate-multiple) Thread b finished.
 + (priority-donate-multiple) Main thread should have priority 32.  Actual priority: 31.
 + (priority-donate-multiple) Main thread should have priority 33.  Actual priority: 31.
+  (priority-donate-multiple) Thread b acquired lock b.
+  (priority-donate-multiple) Thread b finished.
   (priority-donate-multiple) Thread b should have just finished.
 - (priority-donate-multiple) Main thread should have priority 32.  Actual priority: 32.
-- (priority-donate-multiple) Thread a acquired lock a.
-- (priority-donate-multiple) Thread a finished.
 + (priority-donate-multiple) Main thread should have priority 32.  Actual priority: 31.
+  (priority-donate-multiple) Thread a acquired lock a.
+  (priority-donate-multiple) Thread a finished.
   (priority-donate-multiple) Thread a should have just finished.
   (priority-donate-multiple) Main thread should have priority 31.  Actual priority: 31.
   (priority-donate-multiple) end
@@ -364,21 +172,25 @@ Kernel command line: -q run priority-donate-multiple
 Pintos booting with: 
 	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
 	ext_mem: 0x100000 ~ 0x13e0000 (Usable: 19,328 kB)
-Calibrating timer...  104,755,200 loops/s.
+Calibrating timer...  157,081,600 loops/s.
 Boot complete.
 Executing 'priority-donate-multiple':
 (priority-donate-multiple) begin
 (priority-donate-multiple) Main thread should have priority 32.  Actual priority: 31.
 (priority-donate-multiple) Main thread should have priority 33.  Actual priority: 31.
+(priority-donate-multiple) Thread b acquired lock b.
+(priority-donate-multiple) Thread b finished.
 (priority-donate-multiple) Thread b should have just finished.
 (priority-donate-multiple) Main thread should have priority 32.  Actual priority: 31.
+(priority-donate-multiple) Thread a acquired lock a.
+(priority-donate-multiple) Thread a finished.
 (priority-donate-multiple) Thread a should have just finished.
 (priority-donate-multiple) Main thread should have priority 31.  Actual priority: 31.
 (priority-donate-multiple) end
 Execution of 'priority-donate-multiple' complete.
-Timer: 41 ticks
-Thread: 1 idle ticks, 40 kernel ticks, 0 user ticks
-Console: 947 characters output
+Timer: 48 ticks
+Thread: 0 idle ticks, 48 kernel ticks, 0 user ticks
+Console: 1145 characters output
 Keyboard: 0 keys pressed
 Powering off...
 
@@ -408,12 +220,15 @@ Differences in `diff -u' format:
 - (priority-donate-multiple2) Main thread should have priority 36.  Actual priority: 36.
 - (priority-donate-multiple2) Thread b acquired lock b.
 - (priority-donate-multiple2) Thread b finished.
-- (priority-donate-multiple2) Thread a acquired lock a.
-- (priority-donate-multiple2) Thread a finished.
 + (priority-donate-multiple2) Main thread should have priority 34.  Actual priority: 31.
-  (priority-donate-multiple2) Thread c finished.
++ (priority-donate-multiple2) Thread c finished.
 + (priority-donate-multiple2) Main thread should have priority 36.  Actual priority: 31.
+  (priority-donate-multiple2) Thread a acquired lock a.
+  (priority-donate-multiple2) Thread a finished.
+- (priority-donate-multiple2) Thread c finished.
 + (priority-donate-multiple2) Main thread should have priority 36.  Actual priority: 31.
++ (priority-donate-multiple2) Thread b acquired lock b.
++ (priority-donate-multiple2) Thread b finished.
   (priority-donate-multiple2) Threads b, a, c should have just finished, in that order.
   (priority-donate-multiple2) Main thread should have priority 31.  Actual priority: 31.
   (priority-donate-multiple2) end
@@ -433,14 +248,18 @@ Executing 'priority-donate-multiple2':
 (priority-donate-multiple2) Main thread should have priority 34.  Actual priority: 31.
 (priority-donate-multiple2) Thread c finished.
 (priority-donate-multiple2) Main thread should have priority 36.  Actual priority: 31.
+(priority-donate-multiple2) Thread a acquired lock a.
+(priority-donate-multiple2) Thread a finished.
 (priority-donate-multiple2) Main thread should have priority 36.  Actual priority: 31.
+(priority-donate-multiple2) Thread b acquired lock b.
+(priority-donate-multiple2) Thread b finished.
 (priority-donate-multiple2) Threads b, a, c should have just finished, in that order.
 (priority-donate-multiple2) Main thread should have priority 31.  Actual priority: 31.
 (priority-donate-multiple2) end
 Execution of 'priority-donate-multiple2' complete.
 Timer: 45 ticks
-Thread: 1 idle ticks, 44 kernel ticks, 0 user ticks
-Console: 963 characters output
+Thread: 0 idle ticks, 45 kernel ticks, 0 user ticks
+Console: 1165 characters output
 Keyboard: 0 keys pressed
 Powering off...
 
@@ -468,13 +287,14 @@ Differences in `diff -u' format:
 - (priority-donate-nest) Low thread should have priority 32.  Actual priority: 32.
 - (priority-donate-nest) Low thread should have priority 33.  Actual priority: 33.
 - (priority-donate-nest) Medium thread should have priority 33.  Actual priority: 33.
-- (priority-donate-nest) Medium thread got the lock.
-- (priority-donate-nest) High thread got the lock.
-- (priority-donate-nest) High thread finished.
-- (priority-donate-nest) High thread should have just finished.
-- (priority-donate-nest) Middle thread finished.
 + (priority-donate-nest) Low thread should have priority 32.  Actual priority: 31.
 + (priority-donate-nest) Low thread should have priority 33.  Actual priority: 31.
++ (priority-donate-nest) Medium thread should have priority 33.  Actual priority: 32.
+  (priority-donate-nest) Medium thread got the lock.
+  (priority-donate-nest) High thread got the lock.
+  (priority-donate-nest) High thread finished.
+  (priority-donate-nest) High thread should have just finished.
+  (priority-donate-nest) Middle thread finished.
   (priority-donate-nest) Medium thread should just have finished.
   (priority-donate-nest) Low thread should have priority 31.  Actual priority: 31.
   (priority-donate-nest) end
@@ -493,13 +313,19 @@ Executing 'priority-donate-nest':
 (priority-donate-nest) begin
 (priority-donate-nest) Low thread should have priority 32.  Actual priority: 31.
 (priority-donate-nest) Low thread should have priority 33.  Actual priority: 31.
+(priority-donate-nest) Medium thread should have priority 33.  Actual priority: 32.
+(priority-donate-nest) Medium thread got the lock.
+(priority-donate-nest) High thread got the lock.
+(priority-donate-nest) High thread finished.
+(priority-donate-nest) High thread should have just finished.
+(priority-donate-nest) Middle thread finished.
 (priority-donate-nest) Medium thread should just have finished.
 (priority-donate-nest) Low thread should have priority 31.  Actual priority: 31.
 (priority-donate-nest) end
 Execution of 'priority-donate-nest' complete.
-Timer: 44 ticks
-Thread: 1 idle ticks, 43 kernel ticks, 0 user ticks
-Console: 764 characters output
+Timer: 45 ticks
+Thread: 0 idle ticks, 45 kernel ticks, 0 user ticks
+Console: 1102 characters output
 Keyboard: 0 keys pressed
 Powering off...
 
@@ -559,35 +385,8 @@ Differences in `diff -u' format:
 - (priority-donate-chain) main should have priority 15.  Actual priority: 15.
 - (priority-donate-chain) main should have priority 18.  Actual priority: 18.
 - (priority-donate-chain) main should have priority 21.  Actual priority: 21.
-- (priority-donate-chain) thread 1 got lock
-- (priority-donate-chain) thread 1 should have priority 21. Actual priority: 21
-- (priority-donate-chain) thread 2 got lock
-- (priority-donate-chain) thread 2 should have priority 21. Actual priority: 21
-- (priority-donate-chain) thread 3 got lock
-- (priority-donate-chain) thread 3 should have priority 21. Actual priority: 21
-- (priority-donate-chain) thread 4 got lock
-- (priority-donate-chain) thread 4 should have priority 21. Actual priority: 21
-- (priority-donate-chain) thread 5 got lock
-- (priority-donate-chain) thread 5 should have priority 21. Actual priority: 21
-- (priority-donate-chain) thread 6 got lock
-- (priority-donate-chain) thread 6 should have priority 21. Actual priority: 21
-- (priority-donate-chain) thread 7 got lock
-- (priority-donate-chain) thread 7 should have priority 21. Actual priority: 21
-- (priority-donate-chain) thread 7 finishing with priority 21.
-- (priority-donate-chain) interloper 7 finished.
-- (priority-donate-chain) thread 6 finishing with priority 18.
-- (priority-donate-chain) interloper 6 finished.
-- (priority-donate-chain) thread 5 finishing with priority 15.
-- (priority-donate-chain) interloper 5 finished.
-- (priority-donate-chain) thread 4 finishing with priority 12.
-- (priority-donate-chain) interloper 4 finished.
-- (priority-donate-chain) thread 3 finishing with priority 9.
-- (priority-donate-chain) interloper 3 finished.
-- (priority-donate-chain) thread 2 finishing with priority 6.
-- (priority-donate-chain) interloper 2 finished.
-- (priority-donate-chain) thread 1 finishing with priority 3.
 + (priority-donate-chain) main should have priority 3.  Actual priority: 0.
-  (priority-donate-chain) interloper 1 finished.
++ (priority-donate-chain) interloper 1 finished.
 + (priority-donate-chain) main should have priority 6.  Actual priority: 0.
 + (priority-donate-chain) interloper 2 finished.
 + (priority-donate-chain) main should have priority 9.  Actual priority: 0.
@@ -600,6 +399,40 @@ Differences in `diff -u' format:
 + (priority-donate-chain) interloper 6 finished.
 + (priority-donate-chain) main should have priority 21.  Actual priority: 0.
 + (priority-donate-chain) interloper 7 finished.
+  (priority-donate-chain) thread 1 got lock
+- (priority-donate-chain) thread 1 should have priority 21. Actual priority: 21
++ (priority-donate-chain) thread 1 should have priority 21. Actual priority: 3
+  (priority-donate-chain) thread 2 got lock
+- (priority-donate-chain) thread 2 should have priority 21. Actual priority: 21
++ (priority-donate-chain) thread 2 should have priority 21. Actual priority: 6
+  (priority-donate-chain) thread 3 got lock
+- (priority-donate-chain) thread 3 should have priority 21. Actual priority: 21
++ (priority-donate-chain) thread 3 should have priority 21. Actual priority: 9
+  (priority-donate-chain) thread 4 got lock
+- (priority-donate-chain) thread 4 should have priority 21. Actual priority: 21
++ (priority-donate-chain) thread 4 should have priority 21. Actual priority: 12
+  (priority-donate-chain) thread 5 got lock
+- (priority-donate-chain) thread 5 should have priority 21. Actual priority: 21
++ (priority-donate-chain) thread 5 should have priority 21. Actual priority: 15
+  (priority-donate-chain) thread 6 got lock
+- (priority-donate-chain) thread 6 should have priority 21. Actual priority: 21
++ (priority-donate-chain) thread 6 should have priority 21. Actual priority: 18
+  (priority-donate-chain) thread 7 got lock
+  (priority-donate-chain) thread 7 should have priority 21. Actual priority: 21
+  (priority-donate-chain) thread 7 finishing with priority 21.
+- (priority-donate-chain) interloper 7 finished.
+  (priority-donate-chain) thread 6 finishing with priority 18.
+- (priority-donate-chain) interloper 6 finished.
+  (priority-donate-chain) thread 5 finishing with priority 15.
+- (priority-donate-chain) interloper 5 finished.
+  (priority-donate-chain) thread 4 finishing with priority 12.
+- (priority-donate-chain) interloper 4 finished.
+  (priority-donate-chain) thread 3 finishing with priority 9.
+- (priority-donate-chain) interloper 3 finished.
+  (priority-donate-chain) thread 2 finishing with priority 6.
+- (priority-donate-chain) interloper 2 finished.
+  (priority-donate-chain) thread 1 finishing with priority 3.
+- (priority-donate-chain) interloper 1 finished.
   (priority-donate-chain) main finishing with priority 0.
   (priority-donate-chain) end
 
@@ -611,7 +444,7 @@ Kernel command line: -q run priority-donate-chain
 Pintos booting with: 
 	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
 	ext_mem: 0x100000 ~ 0x13e0000 (Usable: 19,328 kB)
-Calibrating timer...  157,081,600 loops/s.
+Calibrating timer...  52,377,600 loops/s.
 Boot complete.
 Executing 'priority-donate-chain':
 (priority-donate-chain) begin
@@ -630,12 +463,33 @@ Executing 'priority-donate-chain':
 (priority-donate-chain) interloper 6 finished.
 (priority-donate-chain) main should have priority 21.  Actual priority: 0.
 (priority-donate-chain) interloper 7 finished.
+(priority-donate-chain) thread 1 got lock
+(priority-donate-chain) thread 1 should have priority 21. Actual priority: 3
+(priority-donate-chain) thread 2 got lock
+(priority-donate-chain) thread 2 should have priority 21. Actual priority: 6
+(priority-donate-chain) thread 3 got lock
+(priority-donate-chain) thread 3 should have priority 21. Actual priority: 9
+(priority-donate-chain) thread 4 got lock
+(priority-donate-chain) thread 4 should have priority 21. Actual priority: 12
+(priority-donate-chain) thread 5 got lock
+(priority-donate-chain) thread 5 should have priority 21. Actual priority: 15
+(priority-donate-chain) thread 6 got lock
+(priority-donate-chain) thread 6 should have priority 21. Actual priority: 18
+(priority-donate-chain) thread 7 got lock
+(priority-donate-chain) thread 7 should have priority 21. Actual priority: 21
+(priority-donate-chain) thread 7 finishing with priority 21.
+(priority-donate-chain) thread 6 finishing with priority 18.
+(priority-donate-chain) thread 5 finishing with priority 15.
+(priority-donate-chain) thread 4 finishing with priority 12.
+(priority-donate-chain) thread 3 finishing with priority 9.
+(priority-donate-chain) thread 2 finishing with priority 6.
+(priority-donate-chain) thread 1 finishing with priority 3.
 (priority-donate-chain) main finishing with priority 0.
 (priority-donate-chain) end
 Execution of 'priority-donate-chain' complete.
 Timer: 46 ticks
-Thread: 1 idle ticks, 45 kernel ticks, 0 user ticks
-Console: 1408 characters output
+Thread: 0 idle ticks, 46 kernel ticks, 0 user ticks
+Console: 2668 characters output
 Keyboard: 0 keys pressed
 Powering off...
 
@@ -661,7 +515,7 @@ Differences in `diff -u' format:
 - (priority-donate-sema) Thread L downed semaphore.
 - (priority-donate-sema) Thread H acquired lock.
 - (priority-donate-sema) Thread H finished.
-- (priority-donate-sema) Thread M finished.
+  (priority-donate-sema) Thread M finished.
 - (priority-donate-sema) Thread L finished.
   (priority-donate-sema) Main thread finished.
   (priority-donate-sema) end
@@ -679,12 +533,13 @@ Boot complete.
 Executing 'priority-donate-sema':
 (priority-donate-sema) begin
 (priority-donate-sema) Thread L acquired lock.
+(priority-donate-sema) Thread M finished.
 (priority-donate-sema) Main thread finished.
 (priority-donate-sema) end
 Execution of 'priority-donate-sema' complete.
-Timer: 44 ticks
-Thread: 1 idle ticks, 43 kernel ticks, 0 user ticks
-Console: 549 characters output
+Timer: 41 ticks
+Thread: 0 idle ticks, 41 kernel ticks, 0 user ticks
+Console: 591 characters output
 Keyboard: 0 keys pressed
 Powering off...
 
@@ -710,9 +565,9 @@ Differences in `diff -u' format:
 + (priority-donate-lower) Main thread should have priority 41.  Actual priority: 31.
   (priority-donate-lower) Lowering base priority...
 - (priority-donate-lower) Main thread should have priority 41.  Actual priority: 41.
-- (priority-donate-lower) acquire: got the lock
-- (priority-donate-lower) acquire: done
 + (priority-donate-lower) Main thread should have priority 41.  Actual priority: 21.
+  (priority-donate-lower) acquire: got the lock
+  (priority-donate-lower) acquire: done
   (priority-donate-lower) acquire must already have finished.
   (priority-donate-lower) Main thread should have priority 21.  Actual priority: 21.
   (priority-donate-lower) end
@@ -732,13 +587,15 @@ Executing 'priority-donate-lower':
 (priority-donate-lower) Main thread should have priority 41.  Actual priority: 31.
 (priority-donate-lower) Lowering base priority...
 (priority-donate-lower) Main thread should have priority 41.  Actual priority: 21.
+(priority-donate-lower) acquire: got the lock
+(priority-donate-lower) acquire: done
 (priority-donate-lower) acquire must already have finished.
 (priority-donate-lower) Main thread should have priority 21.  Actual priority: 21.
 (priority-donate-lower) end
 Execution of 'priority-donate-lower' complete.
-Timer: 45 ticks
-Thread: 1 idle ticks, 44 kernel ticks, 0 user ticks
-Console: 821 characters output
+Timer: 43 ticks
+Thread: 0 idle ticks, 43 kernel ticks, 0 user ticks
+Console: 905 characters output
 Keyboard: 0 keys pressed
 Powering off...
 
@@ -747,12 +604,12 @@ Powering off...
 DETAILS OF tests/threads/mlfqs/mlfqs-load-1 FAILURE:
 
 Kernel panic in run: PANIC at ../../tests/threads/tests.c:93 in fail(): test failed
-Call stack: 0x800421342a 0x8004216a65 0x8004219aa1 0x800421689f 0x8004206636 0x8004206783 0x8004206120
+Call stack: 0x80042135ca 0x8004216cf2 0x8004219d2e 0x8004216b2c 0x8004206636 0x8004206783 0x8004206120
 Translation of call stack:
-0x000000800421342a: debug_panic (lib/kernel/debug.c:32)
-0x0000008004216a65: pass (tests/threads/tests.c:99)
-0x0000008004219aa1: test_mlfqs_load_1 (tests/threads/mlfqs/mlfqs-load-1.c:31)
-0x000000800421689f: run_test (tests/threads/tests.c:57)
+0x00000080042135ca: debug_panic (lib/kernel/debug.c:32)
+0x0000008004216cf2: pass (tests/threads/tests.c:99)
+0x0000008004219d2e: test_mlfqs_load_1 (tests/threads/mlfqs/mlfqs-load-1.c:31)
+0x0000008004216b2c: run_test (tests/threads/tests.c:57)
 0x0000008004206636: run_task (threads/init.c:252)
 0x0000008004206783: run_actions (threads/init.c:297)
 0x0000008004206120: main (threads/init.c:125)
@@ -765,19 +622,19 @@ Kernel command line: -q -mlfqs run mlfqs-load-1
 Pintos booting with: 
 	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
 	ext_mem: 0x100000 ~ 0x13e0000 (Usable: 19,328 kB)
-Calibrating timer...  157,081,600 loops/s.
+Calibrating timer...  104,755,200 loops/s.
 Boot complete.
 Executing 'mlfqs-load-1':
 (mlfqs-load-1) begin
 (mlfqs-load-1) spinning for up to 45 seconds, please wait...
 (mlfqs-load-1) FAIL: load average stayed below 0.5 for more than 45 seconds
 Kernel PANIC at ../../tests/threads/tests.c:93 in fail(): test failed
-Call stack: 0x800421342a 0x8004216a65 0x8004219aa1 0x800421689f 0x8004206636 0x8004206783 0x8004206120.
+Call stack: 0x80042135ca 0x8004216cf2 0x8004219d2e 0x8004216b2c 0x8004206636 0x8004206783 0x8004206120.
 The `backtrace' program can make call stacks useful.
 Read "Backtraces" in the "Debugging Tools" chapter
 of the Pintos documentation for more information.
-Timer: 4643 ticks
-Thread: 1 idle ticks, 4642 kernel ticks, 0 user ticks
+Timer: 4638 ticks
+Thread: 0 idle ticks, 4638 kernel ticks, 0 user ticks
 Console: 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
@@ -884,7 +741,7 @@ Kernel command line: -q -mlfqs run mlfqs-load-60
 Pintos booting with: 
 	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
 	ext_mem: 0x100000 ~ 0x13e0000 (Usable: 19,328 kB)
-Calibrating timer...  157,081,600 loops/s.
+Calibrating timer...  104,755,200 loops/s.
 Boot complete.
 Executing 'mlfqs-load-60':
 (mlfqs-load-60) begin
@@ -982,8 +839,8 @@ Executing 'mlfqs-load-60':
 (mlfqs-load-60) After 178 seconds, load average=0.00.
 (mlfqs-load-60) end
 Execution of 'mlfqs-load-60' complete.
-Timer: 18843 ticks
-Thread: 12798 idle ticks, 6045 kernel ticks, 0 user ticks
+Timer: 18839 ticks
+Thread: 12772 idle ticks, 6068 kernel ticks, 0 user ticks
 Console: 5342 characters output
 Keyboard: 0 keys pressed
 Powering off...
@@ -1093,7 +950,7 @@ Kernel command line: -q -mlfqs run mlfqs-load-avg
 Pintos booting with: 
 	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
 	ext_mem: 0x100000 ~ 0x13e0000 (Usable: 19,328 kB)
-Calibrating timer...  156,467,200 loops/s.
+Calibrating timer...  144,793,600 loops/s.
 Boot complete.
 Executing 'mlfqs-load-avg':
 (mlfqs-load-avg) begin
@@ -1192,7 +1049,7 @@ Executing 'mlfqs-load-avg':
 (mlfqs-load-avg) end
 Execution of 'mlfqs-load-avg' complete.
 Timer: 18845 ticks
-Thread: 6899 idle ticks, 11946 kernel ticks, 0 user ticks
+Thread: 6895 idle ticks, 11952 kernel ticks, 0 user ticks
 Console: 5433 characters output
 Keyboard: 0 keys pressed
 Powering off...
@@ -1434,8 +1291,8 @@ Executing 'mlfqs-nice-2':
 (mlfqs-nice-2) Thread 1 received 1500 ticks.
 (mlfqs-nice-2) end
 Execution of 'mlfqs-nice-2' complete.
-Timer: 4043 ticks
-Thread: 1001 idle ticks, 3042 kernel ticks, 0 user ticks
+Timer: 4041 ticks
+Thread: 1000 idle ticks, 3043 kernel ticks, 0 user ticks
 Console: 674 characters output
 Keyboard: 0 keys pressed
 Powering off...
@@ -1448,14 +1305,14 @@ Some tick counts were missing or differed from those expected by more than 25.
 thread   actual <-> expected explanation
 ------ -------- --- -------- ----------------------------------------
      0      300 <<< 672      Too small, by 347.
-     1      300 <<< 588      Too small, by 263.
-     2      300 <<< 492      Too small, by 167.
-     3      300 <<< 408      Too small, by 83.
+     1      301 <<< 588      Too small, by 262.
+     2      301 <<< 492      Too small, by 166.
+     3      301 <<< 408      Too small, by 82.
      4      300  =  316      
      5      301 >>> 232      Too big, by 44.
-     6      300 >>> 152      Too big, by 123.
-     7      301 >>> 92       Too big, by 184.
-     8      301 >>> 40       Too big, by 236.
+     6      301 >>> 152      Too big, by 124.
+     7      300 >>> 92       Too big, by 183.
+     8      300 >>> 40       Too big, by 235.
      9      300 >>> 8        Too big, by 267.
 
 OUTPUT FROM tests/threads/mlfqs/mlfqs-nice-10:
@@ -1471,22 +1328,22 @@ Boot complete.
 Executing 'mlfqs-nice-10':
 (mlfqs-nice-10) begin
 (mlfqs-nice-10) Starting 10 threads...
-(mlfqs-nice-10) Starting threads took 1 ticks.
+(mlfqs-nice-10) Starting threads took 0 ticks.
 (mlfqs-nice-10) Sleeping 40 seconds to let threads run, please wait...
 (mlfqs-nice-10) Thread 0 received 300 ticks.
-(mlfqs-nice-10) Thread 1 received 300 ticks.
-(mlfqs-nice-10) Thread 2 received 300 ticks.
-(mlfqs-nice-10) Thread 3 received 300 ticks.
+(mlfqs-nice-10) Thread 1 received 301 ticks.
+(mlfqs-nice-10) Thread 2 received 301 ticks.
+(mlfqs-nice-10) Thread 3 received 301 ticks.
 (mlfqs-nice-10) Thread 4 received 300 ticks.
 (mlfqs-nice-10) Thread 5 received 301 ticks.
-(mlfqs-nice-10) Thread 6 received 300 ticks.
-(mlfqs-nice-10) Thread 7 received 301 ticks.
-(mlfqs-nice-10) Thread 8 received 301 ticks.
+(mlfqs-nice-10) Thread 6 received 301 ticks.
+(mlfqs-nice-10) Thread 7 received 300 ticks.
+(mlfqs-nice-10) Thread 8 received 300 ticks.
 (mlfqs-nice-10) Thread 9 received 300 ticks.
 (mlfqs-nice-10) end
 Execution of 'mlfqs-nice-10' complete.
 Timer: 4046 ticks
-Thread: 1001 idle ticks, 3045 kernel ticks, 0 user ticks
+Thread: 1000 idle ticks, 3046 kernel ticks, 0 user ticks
 Console: 1043 characters output
 Keyboard: 0 keys pressed
 Powering off...
@@ -1541,8 +1398,8 @@ Executing 'mlfqs-block':
 (mlfqs-block) Block thread should have already acquired lock.
 (mlfqs-block) end
 Execution of 'mlfqs-block' complete.
-Timer: 3043 ticks
-Thread: 501 idle ticks, 2542 kernel ticks, 0 user ticks
+Timer: 3041 ticks
+Thread: 500 idle ticks, 2541 kernel ticks, 0 user ticks
 Console: 794 characters output
 Keyboard: 0 keys pressed
 Powering off...

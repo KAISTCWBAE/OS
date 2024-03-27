@@ -132,6 +132,8 @@ void thread_unblock (struct thread *);
 /*================================================== IMPLEMENTATION START ==================================================*/
 void thread_sleep (int64_t ticks);
 void thread_awake (int64_t ticks);
+bool thread_compare_priority (struct list_elem *, struct list_elem *, void *aux);
+void thread_test_preemption (void);
 /*================================================== IMPLEMENTATION  END  ==================================================*/ 
 
 struct thread *thread_current (void);
