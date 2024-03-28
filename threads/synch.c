@@ -195,11 +195,11 @@ lock_init (struct lock *lock) {
 void
 lock_acquire (struct lock *lock) {
 /*================================================== IMPLEMENTATION START ==================================================*/
-	// if (thread_mlfqs) {
-	// 	sema_down (&lock->semaphore);
-	// 	lock->holder = thread_current ();
-	// 	return ;
-	// }
+	if (thread_mlfqs) {
+		sema_down (&lock->semaphore);
+		lock->holder = thread_current ();
+		return ;
+	}
 /*================================================== IMPLEMENTATION  END  ==================================================*/
 
 	ASSERT (lock != NULL);
@@ -211,9 +211,8 @@ lock_acquire (struct lock *lock) {
 		curr->wait_on_lock = lock;
 		list_insert_ordered (&lock->holder->donations, &curr->donation_elem, thread_compare_donate_priority, 0);
 		donate_priority ();
-  }
+  	}
 /*================================================== IMPLEMENTATION  END  ==================================================*/
-
 	sema_down (&lock->semaphore);
 /*================================================== IMPLEMENTATION START ==================================================*/
 	curr->wait_on_lock = NULL;
@@ -249,20 +248,15 @@ lock_try_acquire (struct lock *lock) {
    handler. */
 void
 lock_release (struct lock *lock) {
-/*================================================== IMPLEMENTATION START ==================================================*/
-	// lock->holder = NULL;
-	// if (thread_mlfqs) {
-	// 	sema_up (&lock->semaphore);
-	// 	return ;
-	// }
-/*================================================== IMPLEMENTATION  END  ==================================================*/
 	ASSERT (lock != NULL);
 	ASSERT (lock_held_by_current_thread (lock));
-/*================================================== IMPLEMENTATION START ==================================================*/
-	remove_with_lock (lock);
-  	refresh_priority ();
-/*================================================== IMPLEMENTATION  END  ==================================================*/
 	lock->holder = NULL;
+/*================================================== IMPLEMENTATION START ==================================================*/
+	if (!thread_mlfqs){
+		remove_with_lock(lock);
+		refresh_priority();
+	}
+/*================================================== IMPLEMENTATION  END  ==================================================*/
 	sema_up (&lock->semaphore);
 }
 

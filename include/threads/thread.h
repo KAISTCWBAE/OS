@@ -28,9 +28,12 @@ typedef int tid_t;
 #define PRI_DEFAULT 31                  /* Default priority. */
 #define PRI_MAX 63                      /* Highest priority. */
 /*================================================== IMPLEMENTATION START ==================================================*/
-// #define F (1 << 14)
-// #define INT_MAX ((1 << 31) - 1)
-// #define INT_MIN (-(1 << 31))
+#define F (1 << 14)
+#define INT_MAX ((1 << 31) - 1)
+#define INT_MIN (-(1 << 31))
+#define NICE_DEFAULT 0
+#define RECENT_CPU_DEFAULT 0
+#define LOAD_AVG_DEFAULT 0
 /*================================================== IMPLEMENTATION  END  ==================================================*/
 
 /* A kernel thread or user process.
@@ -104,9 +107,10 @@ struct thread {
     struct lock *wait_on_lock;
     struct list donations;
     struct list_elem donation_elem;
+	struct list_elem allelem; 
 
-	// int nice;
-  	// int recent_cpu;
+	int nice;
+  	int recent_cpu;
 /*================================================== IMPLEMENTATION  END  ==================================================*/
 
 	/* Shared between thread.c and synch.c. */
@@ -152,6 +156,18 @@ bool thread_compare_donate_priority (const struct list_elem *, const struct list
 void donate_priority (void);
 void remove_with_lock (struct lock *);
 void refresh_priority (void);
+
+int int_to_fp (int n);
+int fp_to_int (int x);
+int fp_to_int_round (int x);
+int add_fp (int x, int y);
+int sub_fp (int x, int y);
+int add_mixed (int x, int n);
+int sub_mixed (int x, int n);
+int mult_fp (int x, int y);
+int mult_mixed (int x, int n);
+int div_fp (int x, int y);
+int div_mixed (int x, int n);
 /*================================================== IMPLEMENTATION  END  ==================================================*/ 
 
 struct thread *thread_current (void);
