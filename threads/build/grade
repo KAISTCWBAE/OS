@@ -1,4 +1,5 @@
-TOTAL TESTING SCORE: 96.7%
+TOTAL TESTING SCORE: 100.0%
+ALL TESTED PASSED -- PERFECT SCORE
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
@@ -8,9 +9,9 @@ Test Set                                      Pts Max  % Ttl  % Max
 --------------------------------------------- --- --- ------ ------
 tests/threads/Rubric.alarm                      7/  7  20.0%/ 20.0%
 tests/threads/Rubric.priority                  25/ 25  50.0%/ 50.0%
-tests/threads/mlfqs/Rubric                      8/  9  26.7%/ 30.0%
+tests/threads/mlfqs/Rubric                      9/  9  30.0%/ 30.0%
 --------------------------------------------- --- --- ------ ------
-Total                                                  96.7%/100.0%
+Total                                                 100.0%/100.0%
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
@@ -60,62 +61,11 @@ Functionality of advanced scheduler (tests/threads/mlfqs/Rubric):
 	     1/ 1 tests/threads/mlfqs/mlfqs-fair-20
 
 	     1/ 1 tests/threads/mlfqs/mlfqs-nice-2
-	  ** 0/ 1 tests/threads/mlfqs/mlfqs-nice-10
+	     1/ 1 tests/threads/mlfqs/mlfqs-nice-10
 
 	     1/ 1 tests/threads/mlfqs/mlfqs-block
 
 	- Section summary.
-	      8/  9 tests passed
-	      8/  9 points subtotal
+	      9/  9 tests passed
+	      9/  9 points subtotal
 
-
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-
-DETAILS OF tests/threads/mlfqs/mlfqs-nice-10 FAILURE:
-
-Some tick counts were missing or differed from those expected by more than 25.
-thread   actual <-> expected explanation
------- -------- --- -------- ----------------------------------------
-     0      705 >>> 672      Too big, by 8.
-     1      601  =  588      
-     2      496  =  492      
-     3      401  =  408      
-     4      304  =  316      
-     5      220  =  232      
-     6      144  =  152      
-     7       85  =  92       
-     8       40  =  40       
-     9        8  =  8        
-
-OUTPUT FROM tests/threads/mlfqs/mlfqs-nice-10:
-
-Kernel command line: -q -mlfqs run mlfqs-nice-10
-0 ~ 9fc00 1
-100000 ~ 13e0000 1
-Pintos booting with: 
-	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
-	ext_mem: 0x100000 ~ 0x13e0000 (Usable: 19,328 kB)
-Calibrating timer...  157,081,600 loops/s.
-Boot complete.
-Executing 'mlfqs-nice-10':
-(mlfqs-nice-10) begin
-(mlfqs-nice-10) Starting 10 threads...
-(mlfqs-nice-10) Starting threads took 1 ticks.
-(mlfqs-nice-10) Sleeping 40 seconds to let threads run, please wait...
-(mlfqs-nice-10) Thread 0 received 705 ticks.
-(mlfqs-nice-10) Thread 1 received 601 ticks.
-(mlfqs-nice-10) Thread 2 received 496 ticks.
-(mlfqs-nice-10) Thread 3 received 401 ticks.
-(mlfqs-nice-10) Thread 4 received 304 ticks.
-(mlfqs-nice-10) Thread 5 received 220 ticks.
-(mlfqs-nice-10) Thread 6 received 144 ticks.
-(mlfqs-nice-10) Thread 7 received 85 ticks.
-(mlfqs-nice-10) Thread 8 received 40 ticks.
-(mlfqs-nice-10) Thread 9 received 8 ticks.
-(mlfqs-nice-10) end
-Execution of 'mlfqs-nice-10' complete.
-Timer: 4044 ticks
-Thread: 1000 idle ticks, 3044 kernel ticks, 0 user ticks
-Console: 1039 characters output
-Keyboard: 0 keys pressed
-Powering off...

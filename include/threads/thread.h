@@ -168,6 +168,13 @@ int mult_fp (int x, int y);
 int mult_mixed (int x, int n);
 int div_fp (int x, int y);
 int div_mixed (int x, int n);
+
+void mlfqs_calculate_priority (struct thread *);
+void mlfqs_calculate_recent_cpu (struct thread *);
+void mlfqs_calculate_load_avg (void);
+void mlfqs_increment_recent_cpu (void);
+void mlfqs_recalculate_recent_cpu (void);
+void mlfqs_recalculate_priority (void);
 /*================================================== IMPLEMENTATION  END  ==================================================*/ 
 
 struct thread *thread_current (void);
