@@ -27,6 +27,11 @@ typedef int tid_t;
 #define PRI_MIN 0                       /* Lowest priority. */
 #define PRI_DEFAULT 31                  /* Default priority. */
 #define PRI_MAX 63                      /* Highest priority. */
+/*================================================== IMPLEMENTATION START ==================================================*/
+// #define F (1 << 14)
+// #define INT_MAX ((1 << 31) - 1)
+// #define INT_MIN (-(1 << 31))
+/*================================================== IMPLEMENTATION  END  ==================================================*/
 
 /* A kernel thread or user process.
  *
@@ -93,6 +98,15 @@ struct thread {
 	int priority;                       /* Priority. */
 /*================================================== IMPLEMENTATION START ==================================================*/
 	int64_t alarm_ticks;
+
+	int init_priority;
+    
+    struct lock *wait_on_lock;
+    struct list donations;
+    struct list_elem donation_elem;
+
+	// int nice;
+  	// int recent_cpu;
 /*================================================== IMPLEMENTATION  END  ==================================================*/
 
 	/* Shared between thread.c and synch.c. */
@@ -134,6 +148,10 @@ void thread_sleep (int64_t ticks);
 void thread_awake (int64_t ticks);
 bool thread_compare_priority (struct list_elem *, struct list_elem *, void *aux);
 void thread_test_preemption (void);
+bool thread_compare_donate_priority (const struct list_elem *, const struct list_elem *, void *aux);
+void donate_priority (void);
+void remove_with_lock (struct lock *);
+void refresh_priority (void);
 /*================================================== IMPLEMENTATION  END  ==================================================*/ 
 
 struct thread *thread_current (void);
