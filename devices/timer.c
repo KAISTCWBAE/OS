@@ -130,7 +130,6 @@ timer_interrupt (struct intr_frame *args UNUSED) {
 	thread_tick ();
 /*================================================== IMPLEMENTATION START ==================================================*/
 	if (thread_mlfqs) mlfqs_update (ticks);
-	
 	thread_awake (ticks);
 /*================================================== IMPLEMENTATION  END  ==================================================*/
 }

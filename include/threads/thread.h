@@ -105,9 +105,10 @@ struct thread {
 	int init_priority;
     
     struct lock *wait_on_lock;
-    struct list donations;
-    struct list_elem donation_elem;
-	struct list_elem allelem; 
+    struct list donate;
+    struct list_elem donate_elem;
+
+	struct list_elem threads_elem; 
 
 	int nice;
   	int recent_cpu;
@@ -152,21 +153,16 @@ void thread_sleep (int64_t ticks);
 void thread_awake (int64_t ticks);
 void preemption (void);
 
-bool thread_compare_priority (struct list_elem *, struct list_elem *, void *aux);
-bool thread_compare_donate_priority (const struct list_elem *, const struct list_elem *, void *aux);
+bool thread_priority_less (struct list_elem *, struct list_elem *, void *aux);
+bool donate_priority_less (const struct list_elem *, const struct list_elem *, void *aux);
+bool sema_priority_less (const struct list_elem *, const struct list_elem *, void *aux);
 
 void donate_priority (void);
-void remove_with_lock (struct lock *);
-void refresh_priority (void);
 
 void mlfqs_update (int64_t ticks);
 
-int fp_to_int_round (int x);
-int mult_fp (int x, int y);
-int div_fp (int x, int y);
-
-void mlfqs_calculate_priority (struct thread *);
-void mlfqs_calculate_recent_cpu (struct thread *);
+int mult (int x, int y);
+int div (int x, int y);
 /*================================================== IMPLEMENTATION  END  ==================================================*/ 
 
 struct thread *thread_current (void);

@@ -32,12 +32,16 @@ bool lock_held_by_current_thread (const struct lock *);
 struct condition {
 	struct list waiters;        /* List of waiting threads. */
 };
-
+/*================================================== IMPLEMENTATION START ==================================================*/
+struct semaphore_elem {
+	struct list_elem elem;              /* List element. */
+	struct semaphore semaphore;         /* This semaphore. */
+};
+/*================================================== IMPLEMENTATION  END  ==================================================*/
 void cond_init (struct condition *);
 void cond_wait (struct condition *, struct lock *);
 void cond_signal (struct condition *, struct lock *);
 void cond_broadcast (struct condition *, struct lock *);
-
 
 /* Optimization barrier.
  *
