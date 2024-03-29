@@ -292,6 +292,7 @@ thread_awake (int64_t ticks) {
 void
 preemption (void)
 {
+	
     if (!list_empty (&ready_list) && thread_current ()->priority < list_entry (list_front (&ready_list), struct thread, elem)->priority) thread_yield ();
 }
 
