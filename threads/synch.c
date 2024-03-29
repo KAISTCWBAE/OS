@@ -67,8 +67,7 @@ sema_down (struct semaphore *sema) {
 	old_level = intr_disable ();
 	while (sema->value == 0) {
 /*================================================== IMPLEMENTATION START ==================================================*/
-		list_insert_ordered (&sema->waiters, &thread_current ()->elem, thread_compare_priority, 0);
-		// list_push_back (&sema->waiters, &thread_current ()->elem);
+		list_insert_ordered (&sema->waiters, &thread_current ()->elem, thread_compare_priority, NULL);
 /*================================================== IMPLEMENTATION  END  ==================================================*/ 
 		thread_block ();
 	}
@@ -114,14 +113,14 @@ sema_up (struct semaphore *sema) {
 	old_level = intr_disable ();
 	if (!list_empty (&sema->waiters)) {
 /*================================================== IMPLEMENTATION START ==================================================*/
-		list_sort (&sema->waiters, thread_compare_priority, 0);
+		list_sort (&sema->waiters, thread_compare_priority, NULL);
 /*================================================== IMPLEMENTATION  END  ==================================================*/ 
 		thread_unblock (list_entry (list_pop_front (&sema->waiters),
 					struct thread, elem));
 	}
 	sema->value++;
 /*================================================== IMPLEMENTATION START ==================================================*/
-	thread_test_preemption ();
+	preemption ();
 /*================================================== IMPLEMENTATION  END  ==================================================*/
 	intr_set_level (old_level);
 }
@@ -194,30 +193,25 @@ lock_init (struct lock *lock) {
    we need to sleep. */
 void
 lock_acquire (struct lock *lock) {
+	ASSERT (lock != NULL);
+	ASSERT (!intr_context ());
+	ASSERT (!lock_held_by_current_thread (lock));
 /*================================================== IMPLEMENTATION START ==================================================*/
 	if (thread_mlfqs) {
 		sema_down (&lock->semaphore);
 		lock->holder = thread_current ();
 		return ;
 	}
-/*================================================== IMPLEMENTATION  END  ==================================================*/
-
-	ASSERT (lock != NULL);
-	ASSERT (!intr_context ());
-	ASSERT (!lock_held_by_current_thread (lock));
-/*================================================== IMPLEMENTATION START ==================================================*/
 	struct thread *curr = thread_current ();
   	if (lock->holder) {
 		curr->wait_on_lock = lock;
-		list_insert_ordered (&lock->holder->donations, &curr->donation_elem, thread_compare_donate_priority, 0);
+		list_insert_ordered (&lock->holder->donations, &curr->donation_elem, thread_compare_donate_priority, NULL);
 		donate_priority ();
   	}
-/*================================================== IMPLEMENTATION  END  ==================================================*/
+
 	sema_down (&lock->semaphore);
-/*================================================== IMPLEMENTATION START ==================================================*/
 	curr->wait_on_lock = NULL;
 	lock->holder = curr;
-	// lock->holder = thread_current ();
 /*================================================== IMPLEMENTATION  END  ==================================================*/
 }
 
@@ -252,7 +246,7 @@ lock_release (struct lock *lock) {
 	ASSERT (lock_held_by_current_thread (lock));
 	lock->holder = NULL;
 /*================================================== IMPLEMENTATION START ==================================================*/
-	if (!thread_mlfqs){
+	if (!thread_mlfqs) {
 		remove_with_lock(lock);
 		refresh_priority();
 	}
@@ -277,7 +271,7 @@ struct semaphore_elem {
 };
 /*================================================== IMPLEMENTATION START ==================================================*/
 bool 
-sema_compare_priority (const struct list_elem *l, const struct list_elem *s, void *aux UNUSED)
+sema_compare_priority (const struct list_elem *l, const struct list_elem *s, void *aux)
 {
 	struct semaphore_elem *l_sema = list_entry (l, struct semaphore_elem, elem);
 	struct semaphore_elem *s_sema = list_entry (s, struct semaphore_elem, elem);
@@ -330,8 +324,7 @@ cond_wait (struct condition *cond, struct lock *lock) {
 
 	sema_init (&waiter.semaphore, 0);
 /*================================================== IMPLEMENTATION START ==================================================*/
-	list_insert_ordered (&cond->waiters, &waiter.elem, sema_compare_priority, 0);
-	// list_push_back (&cond->waiters, &waiter.elem);
+	list_insert_ordered (&cond->waiters, &waiter.elem, sema_compare_priority, NULL);
 /*================================================== IMPLEMENTATION  END  ==================================================*/
 	lock_release (lock);
 	sema_down (&waiter.semaphore);
@@ -354,7 +347,7 @@ cond_signal (struct condition *cond, struct lock *lock UNUSED) {
 
 	if (!list_empty (&cond->waiters)) {
 /*================================================== IMPLEMENTATION START ==================================================*/
-		list_sort (&cond->waiters, sema_compare_priority, 0);
+		list_sort (&cond->waiters, sema_compare_priority, NULL);
 /*================================================== IMPLEMENTATION  END  ==================================================*/
 		sema_up (&list_entry (list_pop_front (&cond->waiters),
 					struct semaphore_elem, elem)->semaphore);

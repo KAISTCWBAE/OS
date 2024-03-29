@@ -1,8 +1,5 @@
 #include "list.h"
 #include "../debug.h"
-/*================================================== IMPLEMENTATION START ==================================================*/
-#include "../threads/thread.h"
-/*================================================== IMPLEMENTATION  END  ==================================================*/ 
 
 /* Our doubly linked lists have two header elements: the "head"
    just before the first element and the "tail" just after the
@@ -433,24 +430,6 @@ list_insert_ordered (struct list *list, struct list_elem *elem,
 			break;
 	return list_insert (e, elem);
 }
-
-/*================================================== IMPLEMENTATION START ==================================================*/
-void
-list_insert_priority_ordered (struct list *list, struct list_elem *element) {
-	struct list_elem *e;
-
-	ASSERT (list != NULL);
-	ASSERT (element != NULL);
-
-	for (e = list_begin (list); e != list_end (list); e = list_next (e))
-		if (list_entry (e, struct thread, elem)->priority <= list_entry (element, struct thread, elem)->priority)
-			break;
-	return list_insert (e, element);
-}
-// bool priority_less (struct list_elem *element, struct list_elem *e, void *aux) {
-// 	return list_entry (element, struct thread, elem)->priority > list_entry (e, struct thread, elem)->priority;
-// }
-/*================================================== IMPLEMENTATION  END  ==================================================*/
 
 /* Iterates through LIST and removes all but the first in each
    set of adjacent elements that are equal according to LESS

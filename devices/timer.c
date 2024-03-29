@@ -95,9 +95,6 @@ timer_sleep (int64_t ticks) {
 	ASSERT (intr_get_level () == INTR_ON);
 /*================================================== IMPLEMENTATION START ==================================================*/
 	thread_sleep (start + ticks);
-	
-	// while (timer_elapsed (start) < ticks)
-	// 	thread_yield ();
 /*================================================== IMPLEMENTATION  END  ==================================================*/
 
 }
@@ -132,17 +129,7 @@ timer_interrupt (struct intr_frame *args UNUSED) {
 	ticks++;
 	thread_tick ();
 /*================================================== IMPLEMENTATION START ==================================================*/
-	if (thread_mlfqs) {
-		mlfqs_increment_recent_cpu ();
-		if (ticks % 4 == 0) {
-			mlfqs_recalculate_priority ();
-			if (ticks % TIMER_FREQ == 0) {
-				mlfqs_calculate_load_avg ();
-				mlfqs_recalculate_recent_cpu ();
-			}
-		}
-	}
-	
+	if (thread_mlfqs) mlfqs_update (ticks);
 	thread_awake (ticks);
 /*================================================== IMPLEMENTATION  END  ==================================================*/
 }

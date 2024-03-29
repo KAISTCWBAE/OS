@@ -150,31 +150,23 @@ void thread_unblock (struct thread *);
 /*================================================== IMPLEMENTATION START ==================================================*/
 void thread_sleep (int64_t ticks);
 void thread_awake (int64_t ticks);
+void preemption (void);
+
 bool thread_compare_priority (struct list_elem *, struct list_elem *, void *aux);
-void thread_test_preemption (void);
 bool thread_compare_donate_priority (const struct list_elem *, const struct list_elem *, void *aux);
+
 void donate_priority (void);
 void remove_with_lock (struct lock *);
 void refresh_priority (void);
 
-int int_to_fp (int n);
-int fp_to_int (int x);
+void mlfqs_update (int64_t ticks);
+
 int fp_to_int_round (int x);
-int add_fp (int x, int y);
-int sub_fp (int x, int y);
-int add_mixed (int x, int n);
-int sub_mixed (int x, int n);
 int mult_fp (int x, int y);
-int mult_mixed (int x, int n);
 int div_fp (int x, int y);
-int div_mixed (int x, int n);
 
 void mlfqs_calculate_priority (struct thread *);
 void mlfqs_calculate_recent_cpu (struct thread *);
-void mlfqs_calculate_load_avg (void);
-void mlfqs_increment_recent_cpu (void);
-void mlfqs_recalculate_recent_cpu (void);
-void mlfqs_recalculate_priority (void);
 /*================================================== IMPLEMENTATION  END  ==================================================*/ 
 
 struct thread *thread_current (void);
