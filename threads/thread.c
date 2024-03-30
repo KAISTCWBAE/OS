@@ -317,8 +317,8 @@ donate_priority (void)
 	struct thread *curr = thread_current ();
 
 	for (int i = 0; i < 8; i++) {
-		if (!curr->wait_on_lock) break;
-		struct thread *t = curr->wait_on_lock->holder;
+		if (!curr->lock_wait) break;
+		struct thread *t = curr->lock_wait->holder;
 		t->priority = curr->priority;
 		curr = t;
 	}
@@ -426,8 +426,9 @@ thread_yield (void) {
 void
 thread_set_priority (int new_priority) {
 /*================================================== IMPLEMENTATION START ==================================================*/
-	if (!thread_mlfqs)
+	if (!thread_mlfqs) {
 		struct thread *curr = thread_current ();
+
 		curr->init_priority = new_priority;
 		curr->priority = curr->init_priority;
 		if (!list_empty (&curr->donate)) {
@@ -437,6 +438,7 @@ thread_set_priority (int new_priority) {
 			if (t->priority > curr->priority) curr->priority = t->priority;
 		}
 		preemption ();
+	}
 /*================================================== IMPLEMENTATION  END  ==================================================*/
 }
 
@@ -569,7 +571,7 @@ init_thread (struct thread *t, const char *name, int priority) {
 	t->status = THREAD_BLOCKED;
 /*================================================== IMPLEMENTATION START ==================================================*/
 	t->init_priority = priority;
-	t->wait_on_lock = NULL;
+	t->lock_wait = NULL;
 	list_init (&t->donate);
 
 	list_push_back (&threads_list, &t->threads_elem);

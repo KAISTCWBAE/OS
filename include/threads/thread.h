@@ -104,7 +104,7 @@ struct thread {
 
 	int init_priority;
     
-    struct lock *wait_on_lock;
+    struct lock *lock_wait;
     struct list donate;
     struct list_elem donate_elem;
 
