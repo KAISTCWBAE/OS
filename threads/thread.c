@@ -317,8 +317,8 @@ donate_priority (void)
 	struct thread *curr = thread_current ();
 
 	for (int i = 0; i < 8; i++) {
-		if (!curr->lock_wait) break;
-		struct thread *t = curr->lock_wait->holder;
+		if (!curr->wait_on_lock) break;
+		struct thread *t = curr->wait_on_lock->holder;
 		t->priority = curr->priority;
 		curr = t;
 	}
@@ -569,7 +569,7 @@ init_thread (struct thread *t, const char *name, int priority) {
 	t->status = THREAD_BLOCKED;
 /*================================================== IMPLEMENTATION START ==================================================*/
 	t->init_priority = priority;
-	t->lock_wait = NULL;
+	t->wait_on_lock = NULL;
 	list_init (&t->donate);
 
 	list_push_back (&threads_list, &t->threads_elem);
