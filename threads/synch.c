@@ -205,13 +205,13 @@ lock_acquire (struct lock *lock) {
 	
 	struct thread *curr = thread_current ();
   	if (lock->holder) {
-		curr->wait_on_lock = lock;
+		curr->lock_wait = lock;
 		list_insert_ordered (&lock->holder->donate, &curr->donate_elem, donate_priority_less, NULL);
 		donate_priority ();
   	}
 
 	sema_down (&lock->semaphore);
-	curr->wait_on_lock = NULL;
+	curr->lock_wait = NULL;
 	lock->holder = curr;
 /*================================================== IMPLEMENTATION  END  ==================================================*/
 }
@@ -252,7 +252,7 @@ lock_release (struct lock *lock) {
 	
 		for (struct list_elem *e = list_begin (&curr->donate); e != list_end (&curr->donate); e = list_next (e)) {
 			struct thread *t = list_entry (e, struct thread, donate_elem);
-			if (t->wait_on_lock == lock) list_remove (&t->donate_elem);
+			if (t->lock_wait == lock) list_remove (&t->donate_elem);
 		}
 
 		curr->priority = curr->init_priority;
