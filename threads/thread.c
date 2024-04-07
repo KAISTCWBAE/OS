@@ -408,6 +408,9 @@ thread_exit (void) {
    may be scheduled again immediately at the scheduler's whim. */
 void
 thread_yield (void) {
+/*================================================== IMPLEMENTATION START ==================================================*/
+	if (intr_context ()) return;
+/*================================================== IMPLEMENTATION  END  ==================================================*/ 
 	struct thread *curr = thread_current ();
 	enum intr_level old_level;
 

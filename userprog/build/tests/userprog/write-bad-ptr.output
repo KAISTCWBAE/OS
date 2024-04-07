@@ -1,0 +1,35 @@
+Kernel command line: -q -f put write-bad-ptr put sample.txt run write-bad-ptr
+0 ~ 9fc00 1
+100000 ~ 13e0000 1
+Pintos booting with: 
+	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
+	ext_mem: 0x100000 ~ 0x13e0000 (Usable: 19,328 kB)
+Calibrating timer...  107,724,800 loops/s.
+hd0:0: detected 313 sector (156 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 20,160 sector (9 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 105 sector (52 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Formatting file system...done.
+Boot complete.
+Putting 'write-bad-ptr' into the file system...
+Putting 'sample.txt' into the file system...
+Executing 'write-bad-ptr':
+Execution of 'write-bad-ptr' complete.
+Timer: 90 ticks
+Thread: 35 idle ticks, 55 kernel ticks, 0 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 61 reads, 248 writes
+hd1:0: 105 reads, 0 writes
+Page fault at 0: not present error reading page in user context.
+write-bad-ptr: dying due to interrupt 0x0e (#PF Page-Fault Exception).
+Interrupt 0x0e (#PF Page-Fault Exception) at rip=40018e
+ cr2=0000000000000000 error=               4
+rax 0000000000000000 rbx 0000000000000000 rcx 0000000000000000 rdx 0000000000000000
+rsp 000000004747ffc8 rbp 000000004747ffd8 rsi 0000000000000000 rdi 0000000000000000
+rip 000000000040018e r8 0000000000000000  r9 0000000000000000 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000202
+es: 001b ds: 001b cs: 0023 ss: 001b
+Console: 1296 characters output
+Keyboard: 0 keys pressed
+Exception: 1 page faults
+Powering off...

@@ -1,2 +1,2 @@
 warning: TCG doesn't support requested feature: CPUID.01H:ECX.vmx [bit 5]
-qemu-system-x86_64: terminating on signal 1 from pid 1580
+main-loop: WARNING: I/O thread spun for 1000 iterations
