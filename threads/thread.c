@@ -203,7 +203,37 @@ thread_create (const char *name, int priority,
 	/* Initialize thread. */
 	init_thread (t, name, priority);
 	tid = t->tid = allocate_tid ();
+/* project 2 : Process Structure */
+	/*
+	1) 부모 프로세스 저장
+	2) 프로그램이 로드되지 않음
+	3) 프로세스가 종료되지 않음
+	4) exit 세마포어 0으로 초기화 -> init_thread
+	5) load 세마포어 0으로 초기화 -> init_thread
+	6) 자식 리스트에 추가
+	*/
+	struct thread *parent;
+	parent = thread_current();
+	list_push_back(&parent->child_list,&t->child_elem); // parent child 리스트에 생성한 child를 담는다
 
+	/* project 2 : File Descriptor */
+	/*
+	1) fd 값 초기화(0,1은 표준 입력, 출력) -> fdtable배열로 받았으므로 바로 값 넣어주면된다.
+	2) File Descriptor 테이블에 메모리 할당 -> malloc ?, calloc ?, memcpy, palloc?
+	*/
+
+	// Table이 배열로 받으므로 multiple을 쓰는 것 같다는 추측.
+	t->fd_table = palloc_get_multiple(PAL_ZERO, FDT_PAGES);
+	if(t->fd_table == NULL)
+		return TID_ERROR;
+
+	t->fd_table[0] = 1;
+	t->fd_table[1] = 2;
+	t->fd_idx = 2; // idx 2로 초기화
+
+	//count 초기화
+	t->stdin_count = 1;
+	t->stdout_count = 1;
 	/* Call the kernel_thread if it scheduled.
 	 * Note) rdi is 1st argument, and rsi is 2nd argument. */
 	t->tf.rip = (uintptr_t) kernel_thread;
@@ -581,6 +611,13 @@ init_thread (struct thread *t, const char *name, int priority) {
 
 	t->nice = NICE_DEFAULT;
   	t->recent_cpu = RECENT_CPU_DEFAULT;
+
+	/* project 2 : Process Structure */
+	list_init(&t->child_list);
+	sema_init(&t->wait_sema, 0);
+	sema_init(&t->fork_sema, 0);
+	sema_init(&t->free_sema, 0);
+	t->running = NULL;
 /*================================================== IMPLEMENTATION  END  ==================================================*/
 	strlcpy (t->name, name, sizeof t->name);
 	t->tf.rsp = (uint64_t) t + PGSIZE - sizeof (void *);
