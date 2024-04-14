@@ -155,8 +155,6 @@ page_fault (struct intr_frame *f) {
 			not_present ? "not present" : "rights violation",
 			write ? "writing" : "reading",
 			user ? "user" : "kernel");
-			
-	/* Project 2 : File Descriptor*/
-	// kill (f);
+
 	exit(-1);
 }

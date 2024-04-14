@@ -37,10 +37,8 @@ typedef int tid_t;
 #define RECENT_CPU_DEFAULT 0
 #define LOAD_AVG_DEFAULT 0
 
-/* ------------------ project2 -------------------- */
-#define FDT_PAGES 3		/* pages to allocate for file descriptor tables (thread_create, process_exit) */
-#define FDCOUNT_LIMIT FDT_PAGES *(1 << 9)		/* limit fd_idx */
-/* ------------------------------------------------ */
+#define FDT_PAGES 3
+#define FDCOUNT_LIMIT FDT_PAGES * (1 << 9)
 /*================================================== IMPLEMENTATION  END  ==================================================*/
 
 /* A kernel thread or user process.
@@ -120,37 +118,22 @@ struct thread {
 	int nice;
   	int recent_cpu;
 
-	/* --- Project2: User programs - system call --- */
-	/* 종료 상태를 저장 */
-	int exit_status; // _exit(), _wait() 구현 때 사용
+	int exit_status;
 	
-	/* project 2 : Process Structure */
-	/* 자식 프로세스 순회용 list*/
-	struct list child_list; // _fork(), wait() 구현 때 사용
-    struct list_elem child_elem; // _fork(), _wait() 구현 때 사용
+	struct list child_list;
+    struct list_elem child_elem;	
 
-    /* wait_sema : 자식 프로세스가 종료할 때까지 대기. */
-	struct semaphore wait_sema; /* wait() */
+	struct intr_frame parent_if;
+	struct semaphore fork_sema;
+	struct semaphore free_sema;
+	struct semaphore wait_sema;
 
-	/* 
-	parent_if : 자식에게 넘겨줄 intr_frame 
-	fork_sema : 자식 프로세스 fork가 완료될 때 까지 부모가 기다림
-	free_sema : 자식 프로세스 종료상태를 부모가 받을 때까지 종료를 대기
-	*/
-	struct intr_frame parent_if; // _fork() 구현 때 사용, __do_fork() 함수
-	struct semaphore fork_sema; /* parent thread should wait while child thread copy parent */
-	struct semaphore free_sema;	/* wait() */
-
-	/* --- Project 2 : File Descriptor --- */ 
-	/* fd table 파일 구조체와 fd index */
-	struct file **fd_table;   /* allocated in thread_create */
-	int fd_idx;              /* for open file's fd in fd_table */
+	struct file **fd_table;
+	int fd_idx;
 
 	int stdin_count;
 	int stdout_count;
 
-	/* --- Project 2 : Denying Write to Executable --- */
-	/* 현재 실행 중인 파일 */
 	struct file *running;
 /*================================================== IMPLEMENTATION  END  ==================================================*/
 
